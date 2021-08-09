@@ -222,6 +222,20 @@ public class Node
         }
 
 
+        [Fact]
+        public void BuildGraphTest()
+        {
+            List<String> wordList = new List<string> { "hot", "dot", "dog", "lot", "log", "cog" };
+            string beginWord = "hit";
+
+
+            Solution sol1 = new Solution();
+
+            var graph = sol1.BuildGraph(wordList, beginWord);
+
+        }
+
+
 
     }
 
