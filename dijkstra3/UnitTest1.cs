@@ -97,6 +97,7 @@ public class Node
 
         public List<IList<string>> ladders { get; set; }
         public int MinDistance { get; set; }
+
         public void findPathsBFS(Node start, Node dest)
         {
             MinDistance = int.MaxValue;
@@ -185,6 +186,39 @@ public class Node
             sol1.FindLadders(beginWord, endWord, wordList);
 
             Assert.Equal(sol1.FindLadders(beginWord, endWord, wordList), transformation);
+        }
+
+        [Fact]
+        public void WithinSingleEditDistance1()
+        {
+
+            Solution sol1 = new Solution();
+
+
+            Assert.True(sol1.WithinSingleEditDistance("eddi", "eddy"));
+
+        }
+
+
+        [Fact]
+        public void WithinSingleEditDistance2()
+        {
+
+            Solution sol1 = new Solution();
+
+            Assert.False(sol1.WithinSingleEditDistance("eddi", "eddi"));
+
+        }
+
+
+        [Fact]
+        public void WithinSingleEditDistance3()
+        {
+
+            Solution sol1 = new Solution();
+
+            Assert.False(sol1.WithinSingleEditDistance("eddi", "edey"));
+
         }
 
 
