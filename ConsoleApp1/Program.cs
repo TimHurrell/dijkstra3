@@ -57,13 +57,15 @@ namespace ConsoleApp1
 
          public List<string> RemoveIncorrectLength()
         {
+            List<string> wordList2 = new List<string> {};
             foreach (var word in wordList)
             {
-                if (word.Length != length)
+                if (word.Length == length)
                 {
-                    wordList.Remove(word);
+                    wordList2.Add(word);
                 }
             }
+            wordList = wordList2;
             return wordList;
         }
 

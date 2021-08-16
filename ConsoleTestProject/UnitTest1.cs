@@ -10,6 +10,19 @@ namespace ConsoleTestProject
 
     public class TestRecordsFile
     {
+
+        [Fact]
+        public void CheckWordListConstructor()
+        {
+            WordList sol1 = new WordList();
+            
+
+
+            Assert.Equal("AAA",sol1.wordList[12]);
+
+
+
+        }
         [Fact]
         public void CheckListOnlyContains3LetterWordsTest()
         {
