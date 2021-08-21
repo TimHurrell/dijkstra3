@@ -26,6 +26,7 @@ namespace ConsoleTestProject
         {
             WordList sol1 = new WordList();
             sol1.wordList = new List<string> { "hot", "dot", "doog", "lot", "log", "cog" };
+            sol1.Inputword = "Ben";
             sol1.RemoveIncorrectLength();
 
 
@@ -50,6 +51,7 @@ namespace ConsoleTestProject
         {
             WordList sol1 = new WordList();
             sol1.wordList = new List<string> { "hot", "dot", "doog", "lot", "log", "cog" };
+            sol1.Inputword = "Ben";
             Boolean testresult = true;
             foreach (var word in sol1.wordList)
             {
@@ -75,7 +77,7 @@ namespace ConsoleTestProject
             Boolean testresult = true;
             foreach (var word in sol1.wordList)
             {
-                if (word.Length != 3)
+                if (word.Length != 5)
                 {
                     testresult = false;
                 }
@@ -97,7 +99,7 @@ namespace ConsoleTestProject
             Boolean testresult = true;
             foreach (var word in sol1.wordList)
             {
-                if (word.Length != 3)
+                if (word.Length != 5)
                 {
                     testresult = false;
                 }
@@ -108,6 +110,53 @@ namespace ConsoleTestProject
 
 
         }
+
+        [Fact]
+        public void CheckListOnlyContainsWordsTestWhichMatchTheConstructorWordLength()
+        {
+            WordList sol1 = new WordList();
+            sol1.RemoveIncorrectLength();
+
+
+            Boolean testresult = true;
+            foreach (var word in sol1.wordList)
+            {
+                if (word.Length != sol1.Inputword.Length)
+                {
+                    testresult = false;
+                }
+            }
+
+            Assert.True(testresult);
+
+
+
+        }
+
+        [Fact]
+        public void CheckInputAndEndWordsSameLengthTrue()
+        {
+            WordList sol1 = new WordList();
+            sol1.RemoveIfWordsDifferentLength();
+
+            Assert.True(sol1.IsSameLength);
+
+
+        }
+
+
+        [Fact]
+        public void CheckInputAndEndWordsSameLengthFalse()
+        {
+            WordList sol1 = new WordList();
+            sol1.Inputword = "Johnny";
+            sol1.RemoveIfWordsDifferentLength();
+
+            Assert.False(sol1.IsSameLength);
+
+
+        }
+
 
     }
 

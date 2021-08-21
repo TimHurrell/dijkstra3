@@ -27,7 +27,6 @@ namespace ConsoleApp1
             string endWord = "cog";
 
             WordList sol1 = new WordList();
-            //sol1.wordList = new List<string> { "hot", "dot", "doog", "lot", "log", "cog" };
 
             foreach (var item in sol1.wordList)
                {
@@ -56,8 +55,10 @@ namespace ConsoleApp1
     public class WordList
     {
         public List<string> wordList { get; set; }
+        public string Inputword { get; set; }
+        public string Endword { get; set; }
+        public bool IsSameLength { get; set; }
 
-        public int length { get; set; }
         public WordList()
         {
             string path = "";
@@ -65,8 +66,9 @@ namespace ConsoleApp1
             string Filepath = path + @"\words-english.txt";
             //List<string> wordList = File.ReadAllLines(Filepath).ToList();
             wordList = File.ReadAllLines(Filepath).ToList();
-            //wordList = new List<string> { "hot", "dot", "doog", "lot", "log", "cog" };
-            length = 3;
+            Inputword = "Harry";
+            Endword = "Roger";
+            IsSameLength = true;
         }
 
          public List<string> RemoveIncorrectLength()
@@ -74,7 +76,7 @@ namespace ConsoleApp1
             List<string> wordList2 = new List<string> {};
             foreach (var word in wordList)
             {
-                if (word.Length == length)
+                if (word.Length == Inputword.Length)
                 {
                     wordList2.Add(word);
                 }
@@ -83,6 +85,13 @@ namespace ConsoleApp1
             return wordList;
         }
 
+        public void RemoveIfWordsDifferentLength()
+        {
+            if (Endword.Length != Inputword.Length)
+            {
+                IsSameLength = false;
+            }
+        }
     }
 }
 
