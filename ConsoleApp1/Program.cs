@@ -25,17 +25,29 @@ namespace ConsoleApp1
 
             string beginWord = "hit";
             string endWord = "cog";
-            //numInput1 = Console.ReadLine();
-            Solution sol1 = new Solution();
 
-            foreach (var item in sol1.FindLadders(beginWord, endWord, wordList))
-            {
-                Console.Write("New ladder \n");
-                foreach (var item1 in item)
-                {
-                    Console.WriteLine(item1.ToString());
-                }
-            }
+            WordList sol1 = new WordList();
+            //sol1.wordList = new List<string> { "hot", "dot", "doog", "lot", "log", "cog" };
+
+            foreach (var item in sol1.wordList)
+               {
+                   Console.Write("New ladder \n");
+                   Console.WriteLine(item.ToString());
+               }
+
+
+
+                //numInput1 = Console.ReadLine();
+                //    Solution sol1 = new Solution();
+
+                //    foreach (var item in sol1.FindLadders(beginWord, endWord, wordList))
+                //    {
+                //        Console.Write("New ladder \n");
+                //        foreach (var item1 in item)
+                //        {
+                //            Console.WriteLine(item1.ToString());
+                //        }
+                //    }
         }
     }
 
@@ -51,7 +63,9 @@ namespace ConsoleApp1
             string path = "";
             path = System.AppContext.BaseDirectory;
             string Filepath = path + @"\words-english.txt";
-            List<string> wordList = File.ReadAllLines(Filepath).ToList();
+            //List<string> wordList = File.ReadAllLines(Filepath).ToList();
+            wordList = File.ReadAllLines(Filepath).ToList();
+            //wordList = new List<string> { "hot", "dot", "doog", "lot", "log", "cog" };
             length = 3;
         }
 

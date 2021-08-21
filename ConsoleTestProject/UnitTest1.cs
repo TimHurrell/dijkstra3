@@ -15,16 +15,14 @@ namespace ConsoleTestProject
         public void CheckWordListConstructor()
         {
             WordList sol1 = new WordList();
-            
-
-
             Assert.Equal("AAA",sol1.wordList[12]);
 
 
 
         }
+
         [Fact]
-        public void CheckListOnlyContains3LetterWordsTest()
+        public void CheckListOnlyContains3LetterWordsTestLimitedSelectionTrue()
         {
             WordList sol1 = new WordList();
             sol1.wordList = new List<string> { "hot", "dot", "doog", "lot", "log", "cog" };
@@ -48,11 +46,56 @@ namespace ConsoleTestProject
 
 
         [Fact]
-        public void CheckListOnlyContains3LetterWordsTest2()
+        public void CheckListOnlyContains3LetterWordsTestLimitedSelectionFalse()
         {
-            List<String> wordList = new List<string> { "hot", "dot", "doog", "lot", "log", "cog" };
+            WordList sol1 = new WordList();
+            sol1.wordList = new List<string> { "hot", "dot", "doog", "lot", "log", "cog" };
             Boolean testresult = true;
-            foreach (var word in wordList)
+            foreach (var word in sol1.wordList)
+            {
+                if (word.Length != 3)
+                {
+                    testresult = false;
+                }
+            }
+
+            Assert.False(testresult);
+
+
+
+        }
+
+        [Fact]
+        public void CheckListOnlyContains3LetterWordsTestFullSelectionTrue()
+        {
+            WordList sol1 = new WordList();
+            sol1.RemoveIncorrectLength();
+
+
+            Boolean testresult = true;
+            foreach (var word in sol1.wordList)
+            {
+                if (word.Length != 3)
+                {
+                    testresult = false;
+                }
+            }
+
+            Assert.True(testresult);
+
+
+
+        }
+
+
+        [Fact]
+        public void CheckListOnlyContains3LetterWordsTestFullSelectionFalse()
+        {
+            WordList sol1 = new WordList();
+
+
+            Boolean testresult = true;
+            foreach (var word in sol1.wordList)
             {
                 if (word.Length != 3)
                 {
