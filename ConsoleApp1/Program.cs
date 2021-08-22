@@ -11,42 +11,46 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             string numInput1 = "";
+            WordList sol1 = new WordList();
             Console.Write("Enter start word : \n");
+            sol1.Inputword = Console.ReadLine();
             Console.Write("Enter finish word :\n ");
-            Console.Write("Enter word list :\n ");
+            sol1.Endword = Console.ReadLine();
+
 
             // List<String> wordList = new List<string> { "hot", "dot", "dog", "lot", "log", "cog" };
 
-            string path = "";
-            path = System.AppContext.BaseDirectory;
-            string Filepath = path + @"\words-english.txt";
-            List<string> wordList = File.ReadAllLines(Filepath).ToList();
-
-
-            string beginWord = "hit";
-            string endWord = "cog";
-
-            WordList sol1 = new WordList();
-
-            foreach (var item in sol1.wordList)
-               {
-                   Console.Write("New ladder \n");
-                   Console.WriteLine(item.ToString());
-               }
 
 
 
-                //numInput1 = Console.ReadLine();
-                //    Solution sol1 = new Solution();
+            sol1.Inputword = sol1.MakeWordLowerCase(sol1.Inputword);
+            sol1.Endword = sol1.MakeWordLowerCase(sol1.Endword);
 
-                //    foreach (var item in sol1.FindLadders(beginWord, endWord, wordList))
-                //    {
-                //        Console.Write("New ladder \n");
-                //        foreach (var item1 in item)
-                //        {
-                //            Console.WriteLine(item1.ToString());
-                //        }
-                //    }
+            Console.WriteLine(sol1.Inputword);
+            Console.WriteLine(sol1.Endword);
+
+
+
+
+            //foreach (var item in sol1.wordList)
+            //   {
+            //       Console.Write("New ladder \n");
+            //       Console.WriteLine(item.ToString());
+            //   }
+
+
+
+            //numInput1 = Console.ReadLine();
+            //    Solution sol1 = new Solution();
+
+            //    foreach (var item in sol1.FindLadders(beginWord, endWord, wordList))
+            //    {
+            //        Console.Write("New ladder \n");
+            //        foreach (var item1 in item)
+            //        {
+            //            Console.WriteLine(item1.ToString());
+            //        }
+            //    }
         }
     }
 
@@ -58,6 +62,7 @@ namespace ConsoleApp1
         public string Inputword { get; set; }
         public string Endword { get; set; }
         public bool IsSameLength { get; set; }
+        public bool IsSameWord { get; set; }
 
         public WordList()
         {
@@ -66,9 +71,10 @@ namespace ConsoleApp1
             string Filepath = path + @"\words-english.txt";
             //List<string> wordList = File.ReadAllLines(Filepath).ToList();
             wordList = File.ReadAllLines(Filepath).ToList();
-            Inputword = "Harry";
-            Endword = "Roger";
+            //Inputword = "Harry";
+            //Endword = "Roger";
             IsSameLength = true;
+            IsSameWord = false;
         }
 
          public List<string> RemoveIncorrectLength()
@@ -91,6 +97,24 @@ namespace ConsoleApp1
             {
                 IsSameLength = false;
             }
+        }
+
+        public void RemoveIfWordsSame()
+        {
+            if (Endword == Inputword)
+            {
+                IsSameWord = true;
+            }
+        }
+
+        public string MakeWordLowerCase(string word)
+        {
+            int length = word.Length;
+            string finalletters = word[1..length];
+            string firstletter = Inputword[0].ToString();
+            finalletters = finalletters.ToLower();
+            word = firstletter + finalletters;
+            return word;
         }
     }
 }

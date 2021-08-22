@@ -158,6 +158,56 @@ namespace ConsoleTestProject
         }
 
 
+        [Fact]
+        public void CheckInputAndEndWordsSame()
+        {
+            WordList sol1 = new WordList();
+            sol1.Inputword = "Johnny";
+            sol1.Endword = "Johnny";
+            sol1.RemoveIfWordsSame();
+
+            Assert.True(sol1.IsSameWord);
+
+
+        }
+
+        [Fact]
+        public void CheckInputAndEndWordsDifferent()
+        {
+            WordList sol1 = new WordList();
+            sol1.Inputword = "Johnny";
+            sol1.Endword = "Johnn";
+            sol1.RemoveIfWordsSame();
+
+            Assert.False(sol1.IsSameWord);
+
+
+        }
+
+        [Fact]
+        public void CheckWordLowerCaseFalse()
+        {
+            WordList sol1 = new WordList();
+            sol1.Inputword = "JOhnny";
+
+            Assert.False(Char.IsLower(sol1.Inputword[1]));
+
+
+        }
+
+        [Fact]
+        public void CheckWordLowerCaseTrue()
+        {
+            WordList sol1 = new WordList();
+            sol1.Inputword = "JOhnny";
+            sol1.Inputword = sol1.MakeWordLowerCase(sol1.Inputword);
+
+            Assert.True(Char.IsLower(sol1.Inputword[1]));
+
+
+        }
+
+
     }
 
 }
