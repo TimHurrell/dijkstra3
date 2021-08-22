@@ -63,6 +63,7 @@ namespace ConsoleApp1
         public string Endword { get; set; }
         public bool IsSameLength { get; set; }
         public bool IsSameWord { get; set; }
+        public bool ExistsInList { get; set; }
 
         public WordList()
         {
@@ -75,6 +76,7 @@ namespace ConsoleApp1
             //Endword = "Roger";
             IsSameLength = true;
             IsSameWord = false;
+            ExistsInList = false;
         }
 
          public List<string> RemoveIncorrectLength()
@@ -115,6 +117,17 @@ namespace ConsoleApp1
             finalletters = finalletters.ToLower();
             word = firstletter + finalletters;
             return word;
+        }
+
+        public void EndwordExistsInList()
+        {
+            foreach (var word in wordList)
+            {
+                if (Endword == word)
+                {
+                    ExistsInList = true;
+                }
+            }
         }
     }
 }

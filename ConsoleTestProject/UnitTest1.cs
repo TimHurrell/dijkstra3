@@ -207,6 +207,31 @@ namespace ConsoleTestProject
 
         }
 
+        [Fact]
+        public void CheckEndWordExistsInListTrue()
+        {
+            WordList sol1 = new WordList();
+            sol1.Endword = "cog";
+            sol1.EndwordExistsInList();
+
+            Assert.True(sol1.ExistsInList);
+
+
+        }
+
+
+        [Fact]
+        public void CheckEndWordExistsInListFalse()
+        {
+            WordList sol1 = new WordList();
+            sol1.Endword = "Cog";
+            sol1.EndwordExistsInList();
+
+            Assert.False(sol1.ExistsInList);
+
+
+        }
+
 
     }
 
