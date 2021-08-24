@@ -137,9 +137,8 @@ namespace ConsoleTestProject
         public void CheckInputAndEndWordsSameLengthTrue()
         {
             WordList sol1 = new WordList();
-            sol1.RemoveIfWordsDifferentLength();
 
-            Assert.True(sol1.IsSameLength);
+            Assert.True(sol1.AreWordsDifferentLength("Good","Bad"));
 
 
         }
@@ -149,12 +148,8 @@ namespace ConsoleTestProject
         public void CheckInputAndEndWordsSameLengthFalse()
         {
             WordList sol1 = new WordList();
-            sol1.Inputword = "Johnny";
-            sol1.RemoveIfWordsDifferentLength();
 
-            Assert.False(sol1.IsSameLength);
-
-
+            Assert.False(sol1.AreWordsDifferentLength("Good", "Goad"));
         }
 
 
@@ -162,11 +157,8 @@ namespace ConsoleTestProject
         public void CheckInputAndEndWordsSame()
         {
             WordList sol1 = new WordList();
-            sol1.Inputword = "Johnny";
-            sol1.Endword = "Johnny";
-            sol1.RemoveIfWordsSame();
 
-            Assert.True(sol1.IsSameWord);
+            Assert.False(sol1.AreWordsDifferent("Good", "Good"));
 
 
         }
@@ -175,11 +167,7 @@ namespace ConsoleTestProject
         public void CheckInputAndEndWordsDifferent()
         {
             WordList sol1 = new WordList();
-            sol1.Inputword = "Johnny";
-            sol1.Endword = "Johnn";
-            sol1.RemoveIfWordsSame();
-
-            Assert.False(sol1.IsSameWord);
+            Assert.False(sol1.AreWordsDifferent("Good", "Goad"));
 
 
         }

@@ -93,12 +93,17 @@ namespace ConsoleApp1
             return wordList;
         }
 
-        public void RemoveIfWordsDifferentLength()
+       
+
+        public bool AreWordsDifferentLength(string inputWord, string endWord)
         {
-            if (Endword.Length != Inputword.Length)
-            {
-                IsSameLength = false;
-            }
+            return inputWord.Length != endWord.Length;
+        }
+
+
+        public bool AreWordsDifferent(string inputWord, string endWord)
+        {
+            return inputWord != endWord;
         }
 
         public void RemoveIfWordsSame()
