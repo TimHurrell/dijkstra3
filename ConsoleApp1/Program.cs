@@ -10,7 +10,6 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            string numInput1 = "";
             WordList sol1 = new WordList();
             Console.Write("Enter start word : \n");
             sol1.Inputword = Console.ReadLine();
@@ -61,8 +60,6 @@ namespace ConsoleApp1
         public List<string> wordList { get; set; }
         public string Inputword { get; set; }
         public string Endword { get; set; }
-        public bool IsSameLength { get; set; }
-        public bool IsSameWord { get; set; }
         public bool ExistsInList { get; set; }
 
         public WordList()
@@ -74,8 +71,6 @@ namespace ConsoleApp1
             wordList = File.ReadAllLines(Filepath).ToList();
             //Inputword = "Harry";
             //Endword = "Roger";
-            IsSameLength = true;
-            IsSameWord = false;
             ExistsInList = false;
         }
 
@@ -106,14 +101,7 @@ namespace ConsoleApp1
             return inputWord != endWord;
         }
 
-        public void RemoveIfWordsSame()
-        {
-            if (Endword == Inputword)
-            {
-                IsSameWord = true;
-            }
-        }
-
+      
         public string MakeWordLowerCase(string word)
         {
             int length = word.Length;

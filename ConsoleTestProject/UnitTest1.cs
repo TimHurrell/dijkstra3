@@ -167,7 +167,7 @@ namespace ConsoleTestProject
         public void CheckInputAndEndWordsDifferent()
         {
             WordList sol1 = new WordList();
-            Assert.False(sol1.AreWordsDifferent("Good", "Goad"));
+            Assert.True(sol1.AreWordsDifferent("Good", "Goad"));
 
 
         }
