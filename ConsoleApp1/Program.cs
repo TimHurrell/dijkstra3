@@ -54,29 +54,50 @@ namespace ConsoleApp1
     }
 
 
+    public interface IFileRead
+    {
+        public List<string> FileRead(string Filepath);
+    }
 
-    public class WordList
+
+
+    public class WordList : IFileRead
     {
         public List<string> wordList { get; set; }
         public string Inputword { get; set; }
         public string Endword { get; set; }
         public bool ExistsInList { get; set; }
 
-        public WordList()
+        public List<string> FileRead(string Filepath)
         {
             string path = "";
             path = System.AppContext.BaseDirectory;
-            string Filepath = path + @"\words-english.txt";
+            //string Filepath = path + @"\words-english.txt";
             //List<string> wordList = File.ReadAllLines(Filepath).ToList();
             wordList = File.ReadAllLines(Filepath).ToList();
+            return wordList;
             //Inputword = "Harry";
             //Endword = "Roger";
-            ExistsInList = false;
+            // ExistsInList = false;
         }
 
-         public List<string> RemoveIncorrectLength()
+
+
+        //public class WordList
+        //{
+        //    public List<string> _wordList { get; set; }
+
+        //    //inject the dependency
+        //    //this type of dependency injection is known as constructor injection
+        //    public WordList(List<string> wordList)
+        //    {
+        //        _wordList = wordList;
+        //    }
+        //}
+
+        public List<string> RemoveIncorrectLength()
         {
-            List<string> wordList2 = new List<string> {};
+            List<string> wordList2 = new List<string> { };
             foreach (var word in wordList)
             {
                 if (word.Length == Inputword.Length)
@@ -88,7 +109,7 @@ namespace ConsoleApp1
             return wordList;
         }
 
-       
+
 
         public bool AreWordsDifferentLength(string inputWord, string endWord)
         {
@@ -101,7 +122,7 @@ namespace ConsoleApp1
             return inputWord != endWord;
         }
 
-      
+
         public string MakeWordLowerCase(string word)
         {
             int length = word.Length;
@@ -122,48 +143,18 @@ namespace ConsoleApp1
                 }
             }
         }
+
+
+    }
+
+    public class FileOpeningEvent
+    {
+        IFileRead filereader;
+
+        public FileOpeningEvent(IFileRead filereader)
+        {
+            this.filereader = filereader;
+        }
+
     }
 }
-
-//class MainConsole
-//{
-//    static void Main(string[] args)
-//    {
-//        //if the variable is in grey its not being used so you can remove them
-//        string path = "";
-//        path = System.AppContext.BaseDirectory;
-//        string Filepath = path + @"\MaturityData.csv";
-
-//        List<string> lines = File.ReadAllLines(Filepath).ToList();
-//        List<PolicyData> ListOfAccounts = new List<PolicyData>();
-
-//        foreach (var line in lines)
-//        {
-//            PolicyData NewPolicyData = new PolicyData(line);
-//            ListOfAccounts.Add(NewPolicyData);
-//        }
-
-//        List<Policy> ListOfPolicys = new List<Policy>();
-//        foreach (PolicyData account in ListOfAccounts)
-
-//        {
-
-
-//            PolicyFactory factory = new ConcretePolicyFactory();
-//            Policy policy = factory.GetPolicy(account.GetPolicyType(), account);
-//            ListOfPolicys.Add(policy);
-//        }
-
-
-//        IDictionary<string, decimal> PolicyNumberAndPayout = new Dictionary<string, decimal>();
-//        foreach (Policy acco in ListOfPolicys)
-//        {
-//            PolicyNumberAndPayout.Add(acco.PolicyNumber, acco.GetMaturityPayout());
-//        }
-
-//        path = System.AppContext.BaseDirectory;
-//        string jsonOutPut = JsonSerializer.Serialize(PolicyNumberAndPayout);
-//        System.IO.File.WriteAllText(path + @"\jsonInsurancePolicyFile.json", jsonOutPut);
-
-//    }
-//}

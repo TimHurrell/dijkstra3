@@ -14,6 +14,12 @@ namespace ConsoleTestProject
         [Fact]
         public void CheckWordListConstructor()
         {
+
+            string path = "";
+            path = System.AppContext.BaseDirectory;
+            string Filepath = path + @"\words-english.txt";
+            FileOpeningEvent objFileOpeningEvent = new FileOpeningEvent(new WordList());
+            objFileOpeningEvent.WordList.FileRead(Filepath);
             WordList sol1 = new WordList();
             Assert.Equal("AAA",sol1.wordList[12]);
 
