@@ -61,9 +61,29 @@ namespace ConsoleApp1
 
 
 
-    public class WordList : IFileRead
+
+
+
+
+    public class WordList
     {
-        public List<string> wordList { get; set; }
+        public List<string> _wordList { get; set; }
+
+        //inject the dependency
+        //this type of dependency injection is known as constructor injection
+        public WordList(List<string> wordList)
+        {
+            _wordList = wordList;
+        }
+
+        public WordList()
+        {
+
+        }
+
+
+
+
         public string Inputword { get; set; }
         public string Endword { get; set; }
         public bool ExistsInList { get; set; }
@@ -74,8 +94,8 @@ namespace ConsoleApp1
             path = System.AppContext.BaseDirectory;
             //string Filepath = path + @"\words-english.txt";
             //List<string> wordList = File.ReadAllLines(Filepath).ToList();
-            wordList = File.ReadAllLines(Filepath).ToList();
-            return wordList;
+            _wordList = File.ReadAllLines(Filepath).ToList();
+            return _wordList;
             //Inputword = "Harry";
             //Endword = "Roger";
             // ExistsInList = false;
@@ -98,15 +118,15 @@ namespace ConsoleApp1
         public List<string> RemoveIncorrectLength()
         {
             List<string> wordList2 = new List<string> { };
-            foreach (var word in wordList)
+            foreach (var word in _wordList)
             {
                 if (word.Length == Inputword.Length)
                 {
                     wordList2.Add(word);
                 }
             }
-            wordList = wordList2;
-            return wordList;
+            _wordList = wordList2;
+            return _wordList;
         }
 
 
@@ -135,7 +155,7 @@ namespace ConsoleApp1
 
         public void EndwordExistsInList()
         {
-            foreach (var word in wordList)
+            foreach (var word in _wordList)
             {
                 if (Endword == word)
                 {
