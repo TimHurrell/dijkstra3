@@ -6,15 +6,15 @@ using System.Linq;
 
 namespace ConsoleApp1
 {
-    class Program
+    class Console
     {
         static void Main(string[] args)
         {
             WordList sol1 = new WordList();
-            Console.Write("Enter start word : \n");
-            sol1.Inputword = Console.ReadLine();
-            Console.Write("Enter finish word :\n ");
-            sol1.Endword = Console.ReadLine();
+            System.Console.Write("Enter start word : \n");
+            sol1.Inputword = System.Console.ReadLine();
+            System.Console.Write("Enter finish word :\n ");
+            sol1.Endword = System.Console.ReadLine();
 
 
             // List<String> wordList = new List<string> { "hot", "dot", "dog", "lot", "log", "cog" };
@@ -25,8 +25,8 @@ namespace ConsoleApp1
             sol1.Inputword = sol1.MakeWordLowerCase(sol1.Inputword);
             sol1.Endword = sol1.MakeWordLowerCase(sol1.Endword);
 
-            Console.WriteLine(sol1.Inputword);
-            Console.WriteLine(sol1.Endword);
+            System.Console.WriteLine(sol1.Inputword);
+            System.Console.WriteLine(sol1.Endword);
 
 
 
@@ -54,10 +54,10 @@ namespace ConsoleApp1
     }
 
 
-    public interface IFileRead
-    {
-        public List<string> FileRead(string Filepath);
-    }
+    ////public interface IFileRead
+    //{
+    //    public List<string> FileRead(string Filepath);
+    //}
 
 
 
@@ -167,14 +167,14 @@ namespace ConsoleApp1
 
     }
 
-    public class FileOpeningEvent
-    {
-        IFileRead filereader;
+    //public class FileOpeningEvent
+    //{
+    //    IFileRead filereader;
 
-        public FileOpeningEvent(IFileRead filereader)
-        {
-            this.filereader = filereader;
-        }
+    //    public FileOpeningEvent(IFileRead filereader)
+    //    {
+    //        this.filereader = filereader;
+    //    }
 
-    }
+    //}
 }

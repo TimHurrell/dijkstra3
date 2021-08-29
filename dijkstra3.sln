@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "dijkstra3", "dijkstra3\dijkstra3.csproj", "{3927E598-761B-4E0A-BD78-84977748BD97}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibraryTest", "dijkstra3\ClassLibraryTest.csproj", "{3927E598-761B-4E0A-BD78-84977748BD97}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1\ClassLibrary1.csproj", "{328E64EF-B031-4DF5-9C05-EA26331D46D2}"
 EndProject
@@ -12,6 +12,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleTestProject", "ConsoleTestProject\ConsoleTestProject.csproj", "{E6B7AF4A-BB7F-4D0E-A779-EA5E77E6CCDF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{994294B1-C02D-4771-AE19-8BEE4470FF40}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{605EA2AF-2815-44AB-B6D7-D43E34178B93}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +43,8 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{3927E598-761B-4E0A-BD78-84977748BD97} = {994294B1-C02D-4771-AE19-8BEE4470FF40}
+		{328E64EF-B031-4DF5-9C05-EA26331D46D2} = {605EA2AF-2815-44AB-B6D7-D43E34178B93}
+		{FD04AB19-9D74-4247-809A-81D15B07BAB3} = {605EA2AF-2815-44AB-B6D7-D43E34178B93}
 		{E6B7AF4A-BB7F-4D0E-A779-EA5E77E6CCDF} = {994294B1-C02D-4771-AE19-8BEE4470FF40}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

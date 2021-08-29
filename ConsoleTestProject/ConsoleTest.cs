@@ -77,13 +77,14 @@ namespace ConsoleTestProject
         public void CheckListOnlyContains3LetterWordsTestFullSelectionTrue()
         {
             WordList sol1 = new WordList(_wordList);
+            sol1.Inputword = "Ben";
             sol1.RemoveIncorrectLength();
 
 
             Boolean testresult = true;
             foreach (var word in sol1._wordList)
             {
-                if (word.Length != 5)
+                if (word.Length != 3)
                 {
                     testresult = false;
                 }
@@ -121,6 +122,7 @@ namespace ConsoleTestProject
         public void CheckListOnlyContainsWordsTestWhichMatchTheConstructorWordLength()
         {
             WordList sol1 = new WordList(_wordList);
+            sol1.Inputword = "Ben";
             sol1.RemoveIncorrectLength();
 
 
