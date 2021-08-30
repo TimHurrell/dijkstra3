@@ -10,56 +10,42 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
-            WordList sol1 = new WordList();
+            ////WordList wordlist = new WordList();
             System.Console.Write("Enter start word : \n");
-            sol1.Inputword = System.Console.ReadLine();
+            InputWord inputword = new InputWord();
+            inputword.seedword = System.Console.ReadLine();
             System.Console.Write("Enter finish word :\n ");
-            sol1.Endword = System.Console.ReadLine();
-
-
-            // List<String> wordList = new List<string> { "hot", "dot", "dog", "lot", "log", "cog" };
+            inputword.finishword = System.Console.ReadLine();
 
 
 
 
-            sol1.Inputword = sol1.MakeWordLowerCase(sol1.Inputword);
-            sol1.Endword = sol1.MakeWordLowerCase(sol1.Endword);
-
-            System.Console.WriteLine(sol1.Inputword);
-            System.Console.WriteLine(sol1.Endword);
-
-
-
-
-            //foreach (var item in sol1.wordList)
-            //   {
-            //       Console.Write("New ladder \n");
-            //       Console.WriteLine(item.ToString());
-            //   }
-
-
-
-            //numInput1 = Console.ReadLine();
-            //    Solution sol1 = new Solution();
-
-            //    foreach (var item in sol1.FindLadders(beginWord, endWord, wordList))
-            //    {
-            //        Console.Write("New ladder \n");
-            //        foreach (var item1 in item)
-            //        {
-            //            Console.WriteLine(item1.ToString());
-            //        }
-            //    }
+            System.Console.WriteLine(inputword.seedword);
+            System.Console.WriteLine(inputword.finishword);
         }
     }
 
 
-    ////public interface IFileRead
-    //{
-    //    public List<string> FileRead(string Filepath);
-    //}
+
+    public class InputWord
+        {
+            public string seedword { get; set; }
+            public string finishword { get; set; }
 
 
+        public bool AreWordsDifferentLength(string inputWord, string endWord)
+        {
+            return inputWord.Length != endWord.Length;
+        }
+
+
+        public bool AreWordsDifferent(string inputWord, string endWord)
+        {
+            return inputWord != endWord;
+        }
+
+    }
+   
 
 
 
@@ -84,8 +70,6 @@ namespace ConsoleApp1
 
 
 
-        public string Inputword { get; set; }
-        public string Endword { get; set; }
         public bool ExistsInList { get; set; }
 
         public List<string> FileRead(string Filepath)
@@ -103,24 +87,12 @@ namespace ConsoleApp1
 
 
 
-        //public class WordList
-        //{
-        //    public List<string> _wordList { get; set; }
-
-        //    //inject the dependency
-        //    //this type of dependency injection is known as constructor injection
-        //    public WordList(List<string> wordList)
-        //    {
-        //        _wordList = wordList;
-        //    }
-        //}
-
-        public List<string> RemoveIncorrectLength()
+        public List<string> RemoveIncorrectLength(string inputword)
         {
             List<string> wordList2 = new List<string> { };
             foreach (var word in _wordList)
             {
-                if (word.Length == Inputword.Length)
+                if (word.Length == inputword.Length)
                 {
                     wordList2.Add(word);
                 }
@@ -131,33 +103,23 @@ namespace ConsoleApp1
 
 
 
-        public bool AreWordsDifferentLength(string inputWord, string endWord)
-        {
-            return inputWord.Length != endWord.Length;
-        }
 
 
-        public bool AreWordsDifferent(string inputWord, string endWord)
-        {
-            return inputWord != endWord;
-        }
+        //public string MakeWordLowerCase(string word)
+        //{
+        //    int length = word.Length;
+        //    string finalletters = word[1..length];
+        //    string firstletter = Inputword[0].ToString();
+        //    finalletters = finalletters.ToLower();
+        //    word = firstletter + finalletters;
+        //    return word;
+        //}
 
-
-        public string MakeWordLowerCase(string word)
-        {
-            int length = word.Length;
-            string finalletters = word[1..length];
-            string firstletter = Inputword[0].ToString();
-            finalletters = finalletters.ToLower();
-            word = firstletter + finalletters;
-            return word;
-        }
-
-        public void EndwordExistsInList()
+        public void FinishwordExistsInList(string endword)
         {
             foreach (var word in _wordList)
             {
-                if (Endword == word)
+                if (endword == word)
                 {
                     ExistsInList = true;
                 }
@@ -167,14 +129,4 @@ namespace ConsoleApp1
 
     }
 
-    //public class FileOpeningEvent
-    //{
-    //    IFileRead filereader;
-
-    //    public FileOpeningEvent(IFileRead filereader)
-    //    {
-    //        this.filereader = filereader;
-    //    }
-
-    //}
 }
