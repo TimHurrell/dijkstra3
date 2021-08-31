@@ -8,20 +8,63 @@ namespace ConsoleApp1
 {
     class Console
     {
+
         static void Main(string[] args)
         {
             ////WordList wordlist = new WordList();
             System.Console.Write("Enter start word : \n");
-            InputWord inputword = new InputWord();
-            inputword.seedword = System.Console.ReadLine();
+            InputWord inputword = new InputWord
+            {
+                Seedword = System.Console.ReadLine()
+            };
             System.Console.Write("Enter finish word :\n ");
-            inputword.finishword = System.Console.ReadLine();
+            inputword.Finishword = System.Console.ReadLine();
+            System.Console.WriteLine(inputword.Seedword);
+            System.Console.WriteLine(inputword.Finishword);
+
+
+            if (inputword.AreWordsDifferentLength(inputword.Seedword, inputword.Finishword))
+            {
+                System.Console.WriteLine("Sorry, words need to be the same length");
+                return;
+            }
+
+
+            if (inputword.AreWordsDifferent(inputword.Seedword, inputword.Finishword) == false)
+            {
+                System.Console.WriteLine("Sorry, words need to be different");
+                return;
+            }
 
 
 
+            List<string> _wordList;
+            string path = AppContext.BaseDirectory;
+            string Filepath = path + @"\words-english.txt";
+            _wordList = File.ReadAllLines(Filepath).ToList();
 
-            System.Console.WriteLine(inputword.seedword);
-            System.Console.WriteLine(inputword.finishword);
+            WordList wordlist = new WordList(_wordList);
+            wordlist.FinishwordExistsInList(inputword.Finishword);
+
+            if (wordlist.ExistsInList == false)
+            {
+                System.Console.WriteLine("Sorry, the finish word has to be in your dictionary file");
+                return;
+            }
+
+            wordlist.RemoveIncorrectLength(inputword.Seedword);
+
+
+            Solution sol1 = new Solution();
+
+            IList<IList<string>> ladders = sol1.FindLadders(inputword.Seedword, inputword.Finishword, wordlist._wordList);
+
+            
+
+
+            //System.Console.WriteLine(ladders[0]);
+
+
         }
     }
 
@@ -29,8 +72,8 @@ namespace ConsoleApp1
 
     public class InputWord
         {
-            public string seedword { get; set; }
-            public string finishword { get; set; }
+            public string Seedword { get; set; }
+            public string Finishword { get; set; }
 
 
         public bool AreWordsDifferentLength(string inputWord, string endWord)
@@ -74,8 +117,7 @@ namespace ConsoleApp1
 
         public List<string> FileRead(string Filepath)
         {
-            string path = "";
-            path = System.AppContext.BaseDirectory;
+            string path = AppContext.BaseDirectory;
             //string Filepath = path + @"\words-english.txt";
             //List<string> wordList = File.ReadAllLines(Filepath).ToList();
             _wordList = File.ReadAllLines(Filepath).ToList();

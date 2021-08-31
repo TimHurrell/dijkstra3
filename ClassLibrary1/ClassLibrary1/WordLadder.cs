@@ -11,14 +11,14 @@ namespace ClassLibrary1
         public List<Node> Neighbors { get; set; }
         public List<Node> ShortestPathChildren { get; set; }
 
-        public bool isVisited { get; set; }
+        public bool IsVisited { get; set; }
         public int Distance { get; set; }
         public Node()
         {
             Neighbors = new List<Node>();
             ShortestPathChildren = new List<Node>();
             Distance = int.MaxValue;
-            isVisited = false;
+            IsVisited = false;
         }
 
     }
@@ -85,18 +85,18 @@ namespace ClassLibrary1
             if (destNode == null)
                 return new List<IList<string>>();
 
-            findPathsBFS(startNode, destNode);
-            ladders = new List<IList<string>>();
+            FindPathsBFS(startNode, destNode);
+            Ladders = new List<IList<string>>();
 
-            traverseDFS(startNode, destNode, new List<string>());
+            TraverseDFS(startNode, destNode, new List<string>());
 
-            return ladders;
+            return Ladders;
         }
 
-        public List<IList<string>> ladders { get; set; }
+        public List<IList<string>> Ladders { get; set; }
         public int MinDistance { get; set; }
 
-        public void findPathsBFS(Node start, Node dest)
+        public void FindPathsBFS(Node start, Node dest)
         {
             MinDistance = int.MaxValue;
             var list = new List<Node>();
@@ -119,7 +119,7 @@ namespace ClassLibrary1
                     {
                         var new_distance = node.Distance + 1;
 
-                        if ((!node.isVisited) &&
+                        if ((!node.IsVisited) &&
                             (new_distance <= neighbor.Distance) &&
                             (new_distance <= MinDistance))
                         {
@@ -129,14 +129,14 @@ namespace ClassLibrary1
                         }
                     }
 
-                    node.isVisited = true;
+                    node.IsVisited = true;
                 }
 
                 list = new_list;
             }
 
         }
-        public void traverseDFS(Node current, Node dest, List<string> ladder)
+        public void TraverseDFS(Node current, Node dest, List<string> ladder)
         {
             ladder.Add(current.Value);
 
@@ -145,14 +145,14 @@ namespace ClassLibrary1
                 var copied_ladder = new List<string>();
                 foreach (var word in ladder)
                     copied_ladder.Add(word);
-                ladders.Add(copied_ladder);
+                Ladders.Add(copied_ladder);
                 ladder.Remove(current.Value);
                 return;
             }
 
             foreach (var child in current.ShortestPathChildren)
             {
-                traverseDFS(child, dest, ladder);
+                TraverseDFS(child, dest, ladder);
             }
 
             ladder.Remove(current.Value);

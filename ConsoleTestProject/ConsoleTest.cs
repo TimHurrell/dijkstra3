@@ -33,8 +33,8 @@ namespace ConsoleTestProject
             WordList wordlist = new WordList();
             InputWord inputword = new InputWord();
             wordlist._wordList = new List<string> { "hot", "dot", "doog", "lot", "log", "cog" };
-            inputword.seedword = "Ben";
-            wordlist.RemoveIncorrectLength(inputword.seedword);
+            inputword.Seedword = "Ben";
+            wordlist.RemoveIncorrectLength(inputword.Seedword);
 
 
             Boolean testresult = true;
@@ -56,10 +56,14 @@ namespace ConsoleTestProject
         [Fact]
         public void CheckListOnlyContains3LetterWordsTestLimitedSelectionFalse()
         {
-            WordList wordlist = new WordList();
-            wordlist._wordList = new List<string> { "hot", "dot", "doog", "lot", "log", "cog" };
-            InputWord inputword = new InputWord();
-            inputword.seedword = "Ben";
+            WordList wordlist = new WordList
+            {
+                _wordList = new List<string> { "hot", "dot", "doog", "lot", "log", "cog" }
+            };
+            InputWord inputword = new InputWord
+            {
+                Seedword = "Ben"
+            };
             Boolean testresult = true;
             foreach (var word in wordlist._wordList)
             {
@@ -79,9 +83,11 @@ namespace ConsoleTestProject
         public void CheckListOnlyContains3LetterWordsTestFullSelectionTrue()
         {
             WordList wordlist = new WordList(_wordList);
-            InputWord inputword = new InputWord();
-            inputword.seedword = "Ben";
-            wordlist.RemoveIncorrectLength(inputword.seedword);
+            InputWord inputword = new InputWord
+            {
+                Seedword = "Ben"
+            };
+            wordlist.RemoveIncorrectLength(inputword.Seedword);
 
 
             Boolean testresult = true;
@@ -125,15 +131,17 @@ namespace ConsoleTestProject
         public void CheckListOnlyContainsWordsTestWhichMatchTheConstructorWordLength()
         {
             WordList wordlist = new WordList(_wordList);
-            InputWord inputword = new InputWord();
-            inputword.seedword = "Ben";
-            wordlist.RemoveIncorrectLength(inputword.seedword);
+            InputWord inputword = new InputWord
+            {
+                Seedword = "Ben"
+            };
+            wordlist.RemoveIncorrectLength(inputword.Seedword);
 
 
             Boolean testresult = true;
             foreach (var word in wordlist._wordList)
             {
-                if (word.Length != inputword.seedword.Length)
+                if (word.Length != inputword.Seedword.Length)
                 {
                     testresult = false;
                 }
@@ -183,9 +191,11 @@ namespace ConsoleTestProject
             List<string> words = new List<string>() { "cog", "mat" };
 
             WordList wordlist = new WordList(words);
-            InputWord inputword = new InputWord();
-            inputword.finishword = "cog";
-            wordlist.FinishwordExistsInList(inputword.finishword);
+            InputWord inputword = new InputWord
+            {
+                Finishword = "cog"
+            };
+            wordlist.FinishwordExistsInList(inputword.Finishword);
 
             Assert.True(wordlist.ExistsInList);
         }
@@ -197,9 +207,11 @@ namespace ConsoleTestProject
             List<string> words = new List<string>() { "cog", "mat" };
 
             WordList wordlist = new WordList(words);
-            InputWord inputword = new InputWord();
-            inputword.finishword = "Cog";
-            wordlist.FinishwordExistsInList(inputword.finishword);
+            InputWord inputword = new InputWord
+            {
+                Finishword = "Cog"
+            };
+            wordlist.FinishwordExistsInList(inputword.Finishword);
 
             Assert.False(wordlist.ExistsInList);
         }
