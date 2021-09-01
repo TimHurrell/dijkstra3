@@ -36,11 +36,16 @@ namespace ConsoleApp1
                 return;
             }
 
+            System.Console.Write("Enter file name :\n ");
+            string filename = System.Console.ReadLine();
+
 
 
             List<string> _wordList;
             string path = AppContext.BaseDirectory;
-            string Filepath = path + @"\words-english.txt";
+            // string Filepath = path + @"\words-english.txt";
+
+            string Filepath = path + @"\" + filename;
             _wordList = File.ReadAllLines(Filepath).ToList();
 
             WordList wordlist = new WordList(_wordList);
@@ -59,8 +64,15 @@ namespace ConsoleApp1
 
             IList<IList<string>> ladders = sol1.FindLadders(inputword.Seedword, inputword.Finishword, wordlist._wordList);
 
-            
 
+            foreach (var item in ladders)
+            {
+                System.Console.WriteLine("New ladder \n");
+                foreach (var item1 in item)
+                {
+                    System.Console.WriteLine(item1.ToString());
+                }
+            }
 
             //System.Console.WriteLine(ladders[0]);
 
