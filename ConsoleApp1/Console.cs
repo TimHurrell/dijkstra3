@@ -9,7 +9,8 @@ namespace ConsoleApp1
     class Console
     {
 
-        static void Main(string[] args)
+        //static void Main(string[] args)
+        static void Main()
         {
             ////WordList wordlist = new WordList();
             System.Console.Write("Enter start word : \n");
@@ -126,18 +127,6 @@ namespace ConsoleApp1
 
 
         public bool ExistsInList { get; set; }
-
-        public List<string> FileRead(string Filepath)
-        {
-            string path = AppContext.BaseDirectory;
-            //string Filepath = path + @"\words-english.txt";
-            //List<string> wordList = File.ReadAllLines(Filepath).ToList();
-            _wordList = File.ReadAllLines(Filepath).ToList();
-            return _wordList;
-            //Inputword = "Harry";
-            //Endword = "Roger";
-            // ExistsInList = false;
-        }
 
 
 
