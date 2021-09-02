@@ -180,7 +180,7 @@ namespace ConsoleTestProject
         {
             InputWord inputword = new InputWord();
 
-            Assert.False(inputword.AreWordsDifferent("Good", "Goad"));
+            Assert.True(inputword.AreWordsDifferent("Good", "Goad"));
         }
 
       

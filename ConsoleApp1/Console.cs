@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace ConsoleApp1
 {
@@ -66,16 +67,26 @@ namespace ConsoleApp1
             IList<IList<string>> ladders = sol1.FindLadders(inputword.Seedword, inputword.Finishword, wordlist._wordList);
 
 
+            string strFilePath = path + @"\Data.csv";
+            string strSeperator = ",";
+            StringBuilder sbOutput = new StringBuilder();
+
+            int i = 0;
             foreach (var item in ladders)
             {
-                System.Console.WriteLine("New ladder \n");
+                i++;
+                sbOutput.AppendLine(string.Join(strSeperator, ""));
+                sbOutput.Append(string.Join(strSeperator, "Ladder" + i));
                 foreach (var item1 in item)
                 {
-                    System.Console.WriteLine(item1.ToString());
+                    sbOutput.Append(string.Join(strSeperator, ","));
+                    sbOutput.Append(string.Join(strSeperator, item1));
                 }
             }
 
-            //System.Console.WriteLine(ladders[0]);
+            File.WriteAllText(strFilePath, sbOutput.ToString());
+
+
 
 
         }
