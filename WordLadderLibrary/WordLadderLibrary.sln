@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31410.357
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassLibrary1", "ClassLibrary1\ClassLibrary1.csproj", "{435BF810-D543-4E65-B301-FA9E8B7229F0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordLadderLibrary", "WordLadderLibrary\WordLadderLibrary.csproj", "{435BF810-D543-4E65-B301-FA9E8B7229F0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
