@@ -3,7 +3,7 @@ using Xunit;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using ConsoleApp1;
+using ConsoleApplication;
 
 namespace ConsoleTestProject
 {
