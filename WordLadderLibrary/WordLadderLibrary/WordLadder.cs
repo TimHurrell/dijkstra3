@@ -23,7 +23,7 @@ namespace WordLadderLibrary
 
     }
 
-    public class Solution
+    public class WordLadderSolution
     {
 
         public bool WithinSingleEditDistance(string s1, string s2)

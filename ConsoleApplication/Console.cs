@@ -10,30 +10,27 @@ namespace ConsoleApplication
 {
     class Console
     {
-
-        //static void Main(string[] args)
         static void Main()
         {
-            ////WordList wordlist = new WordList();
             System.Console.Write("Enter start word : \n");
-            InputWord inputword = new InputWord
+            InputWord inputwordinstance = new InputWord
             {
                 Seedword = System.Console.ReadLine()
             };
             System.Console.Write("Enter finish word :\n ");
-            inputword.Finishword = System.Console.ReadLine();
-            System.Console.WriteLine(inputword.Seedword);
-            System.Console.WriteLine(inputword.Finishword);
+            inputwordinstance.Finishword = System.Console.ReadLine();
+            System.Console.WriteLine(inputwordinstance.Seedword);
+            System.Console.WriteLine(inputwordinstance.Finishword);
 
 
-            if (inputword.AreWordsDifferentLength(inputword.Seedword, inputword.Finishword))
+            if (inputwordinstance.AreWordsDifferentLength(inputwordinstance.Seedword, inputwordinstance.Finishword))
             {
                 System.Console.WriteLine("Sorry, words need to be the same length");
                 return;
             }
 
 
-            if (inputword.AreWordsDifferent(inputword.Seedword, inputword.Finishword) == false)
+            if (inputwordinstance.AreWordsDifferent(inputwordinstance.Seedword, inputwordinstance.Finishword) == false)
             {
                 System.Console.WriteLine("Sorry, words need to be different");
                 return;
@@ -46,26 +43,25 @@ namespace ConsoleApplication
 
             List<string> _wordList;
             string path = AppContext.BaseDirectory;
-            // string Filepath = path + @"\words-english.txt";
 
             string Filepath = path + @"\" + filename;
             _wordList = File.ReadAllLines(Filepath).ToList();
 
-            WordList wordlist = new WordList(_wordList);
-            wordlist.FinishwordExistsInList(inputword.Finishword);
+            WordList wordlistinstance = new WordList(_wordList);
+            wordlistinstance.FinishwordExistsInList(inputwordinstance.Finishword);
 
-            if (wordlist.ExistsInList == false)
+            if (wordlistinstance.ExistsInList == false)
             {
                 System.Console.WriteLine("Sorry, the finish word has to be in your dictionary file");
                 return;
             }
 
-            wordlist.RemoveIncorrectLength(inputword.Seedword);
+            wordlistinstance.RemoveIncorrectLength(inputwordinstance.Seedword);
 
 
-            Solution sol1 = new Solution();
+            WordLadderSolution WordLadderInstance = new WordLadderSolution();
 
-            IList<IList<string>> ladders = sol1.FindLadders(inputword.Seedword, inputword.Finishword, wordlist._wordList);
+            IList<IList<string>> ladders = WordLadderInstance.FindLadders(inputwordinstance.Seedword, inputwordinstance.Finishword, wordlistinstance._wordList);
 
 
             string strFilePath = path + @"\Data.csv";
@@ -116,9 +112,6 @@ namespace ConsoleApplication
    
 
 
-
-
-
     public class WordList
     {
         public List<string> _wordList { get; set; }
@@ -137,38 +130,24 @@ namespace ConsoleApplication
 
 
 
-
         public bool ExistsInList { get; set; }
 
 
 
-        public List<string> RemoveIncorrectLength(string inputword)
+        public List<string> RemoveIncorrectLength(string inputwordinstance)
         {
-            List<string> wordList2 = new List<string> { };
+            List<string> amendedwordlist = new List<string> { };
             foreach (var word in _wordList)
             {
-                if (word.Length == inputword.Length)
+                if (word.Length == inputwordinstance.Length)
                 {
-                    wordList2.Add(word);
+                    amendedwordlist.Add(word);
                 }
             }
-            _wordList = wordList2;
+            _wordList = amendedwordlist;
             return _wordList;
         }
 
-
-
-
-
-        //public string MakeWordLowerCase(string word)
-        //{
-        //    int length = word.Length;
-        //    string finalletters = word[1..length];
-        //    string firstletter = Inputword[0].ToString();
-        //    finalletters = finalletters.ToLower();
-        //    word = firstletter + finalletters;
-        //    return word;
-        //}
 
         public void FinishwordExistsInList(string endword)
         {

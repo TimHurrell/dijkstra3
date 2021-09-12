@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using WordLadderLibrary;
 using Xunit;
 
-namespace dijkstra3
+namespace WordLadderTest
 {
    
 
@@ -27,23 +27,23 @@ namespace dijkstra3
             };
 
 
-            Solution sol1 = new Solution();
+            WordLadderSolution WordLadderInstance = new WordLadderSolution();
 
 
 
-            sol1.FindLadders(beginWord, endWord, wordList);
+            WordLadderInstance.FindLadders(beginWord, endWord, wordList);
 
-            Assert.Equal(sol1.FindLadders(beginWord, endWord, wordList), transformation);
+            Assert.Equal(WordLadderInstance.FindLadders(beginWord, endWord, wordList), transformation);
         }
 
         [Fact]
         public void WithinSingleEditDistance1()
         {
 
-            Solution sol1 = new Solution();
+            WordLadderSolution WordLadderInstance = new WordLadderSolution();
 
 
-            Assert.True(sol1.WithinSingleEditDistance("eddi", "eddy"));
+            Assert.True(WordLadderInstance.WithinSingleEditDistance("eddi", "eddy"));
 
         }
 
@@ -52,9 +52,9 @@ namespace dijkstra3
         public void WithinSingleEditDistance2()
         {
 
-            Solution sol1 = new Solution();
+            WordLadderSolution WordLadderInstance = new WordLadderSolution();
 
-            Assert.False(sol1.WithinSingleEditDistance("eddi", "eddi"));
+            Assert.False(WordLadderInstance.WithinSingleEditDistance("eddi", "eddi"));
 
         }
 
@@ -63,9 +63,9 @@ namespace dijkstra3
         public void WithinSingleEditDistance3()
         {
 
-            Solution sol1 = new Solution();
+            WordLadderSolution WordLadderInstance = new WordLadderSolution();
 
-            Assert.False(sol1.WithinSingleEditDistance("eddi", "edey"));
+            Assert.False(WordLadderInstance.WithinSingleEditDistance("eddi", "edey"));
 
         }
 
