@@ -10,36 +10,16 @@ namespace ConsoleApplication
 {
     class Console
     {
-        static void Main()
+        public void Process()
         {
-            System.Console.Write("Enter start word : \n");
             InputWord inputwordinstance = new InputWord
             {
-                Seedword = System.Console.ReadLine()
+                Seedword = null
             };
-            System.Console.Write("Enter finish word :\n ");
-            inputwordinstance.Finishword = System.Console.ReadLine();
-            System.Console.WriteLine(inputwordinstance.Seedword);
-            System.Console.WriteLine(inputwordinstance.Finishword);
-
-
-            if (inputwordinstance.AreWordsDifferentLength(inputwordinstance.Seedword, inputwordinstance.Finishword))
-            {
-                System.Console.WriteLine("Sorry, words need to be the same length");
-                return;
-            }
-
-
-            if (inputwordinstance.AreWordsDifferent(inputwordinstance.Seedword, inputwordinstance.Finishword) == false)
-            {
-                System.Console.WriteLine("Sorry, words need to be different");
-                return;
-            }
+            inputwordinstance = Intro();
 
             System.Console.Write("Enter file name :\n ");
             string filename = System.Console.ReadLine();
-
-
 
             List<string> _wordList;
             string path = AppContext.BaseDirectory;
@@ -55,6 +35,7 @@ namespace ConsoleApplication
                 System.Console.WriteLine("Sorry, the finish word has to be in your dictionary file");
                 return;
             }
+
 
             wordlistinstance.RemoveIncorrectLength(inputwordinstance.Seedword);
 
@@ -85,6 +66,49 @@ namespace ConsoleApplication
 
 
 
+
+        }
+
+
+        // private void Intro()
+        public InputWord Intro()
+        {
+            System.Console.Write("Enter start word : \n");
+            InputWord inputwordinstance = new InputWord
+            {
+                Seedword = System.Console.ReadLine()
+            };
+            System.Console.Write("Enter finish word :\n ");
+            inputwordinstance.Finishword = System.Console.ReadLine();
+            System.Console.WriteLine(inputwordinstance.Seedword);
+            System.Console.WriteLine(inputwordinstance.Finishword);
+
+
+            if (inputwordinstance.AreWordsDifferentLength(inputwordinstance.Seedword, inputwordinstance.Finishword))
+            {
+                System.Console.WriteLine("Sorry, words need to be the same length");
+                return inputwordinstance;
+            } 
+
+            if (inputwordinstance.AreWordsDifferent(inputwordinstance.Seedword, inputwordinstance.Finishword) == false)
+            {
+                System.Console.WriteLine("Sorry, words need to be different");
+                return inputwordinstance;
+            }
+
+            return inputwordinstance;
+
+
+
+
+        }
+
+
+        //public static void Main(String[] args)
+        static void Main()
+        {
+            Console console = new Console();
+            console.Process();
 
         }
     }
@@ -161,6 +185,11 @@ namespace ConsoleApplication
         }
 
 
+
+
     }
+
+
+
 
 }
