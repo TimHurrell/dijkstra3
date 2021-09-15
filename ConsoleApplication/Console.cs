@@ -18,26 +18,34 @@ namespace ConsoleApplication
             };
             inputwordinstance = Intro();
 
-            System.Console.Write("Enter file name :\n ");
-            string filename = System.Console.ReadLine();
 
-            List<string> _wordList;
-            string path = AppContext.BaseDirectory;
 
-            string Filepath = path + @"\" + filename;
-            _wordList = File.ReadAllLines(Filepath).ToList();
 
-            WordList wordlistinstance = new WordList(_wordList);
-            wordlistinstance.FinishwordExistsInList(inputwordinstance.Finishword);
-
-            if (wordlistinstance.ExistsInList == false)
+            WordFilePath Filepathinstance = new WordFilePath
             {
-                System.Console.WriteLine("Sorry, the finish word has to be in your dictionary file");
-                return;
-            }
+                Filepath = null
+            };
+            string Filepath = Filepathinstance.GetWordFilePath();
+
+
+
+
+            WordList wordlistinstance = CreateWordListFromInputWordFile(Filepath);
+
+
+            FinishWordExistsInList(wordlistinstance, inputwordinstance.Finishword);
 
 
             wordlistinstance.RemoveIncorrectLength(inputwordinstance.Seedword);
+
+
+            //=====
+
+
+
+
+
+
 
 
             WordLadderSolution WordLadderInstance = new WordLadderSolution();
@@ -45,7 +53,7 @@ namespace ConsoleApplication
             IList<IList<string>> ladders = WordLadderInstance.FindLadders(inputwordinstance.Seedword, inputwordinstance.Finishword, wordlistinstance._wordList);
 
 
-            string strFilePath = path + @"\Data.csv";
+            string strFilePath = AppContext.BaseDirectory + @"\Data.csv";
             string strSeperator = ",";
             StringBuilder sbOutput = new StringBuilder();
 
@@ -69,8 +77,6 @@ namespace ConsoleApplication
 
         }
 
-
-        // private void Intro()
         public InputWord Intro()
         {
             System.Console.Write("Enter start word : \n");
@@ -98,13 +104,37 @@ namespace ConsoleApplication
 
             return inputwordinstance;
 
+        }
 
 
+        public void FinishWordExistsInList (WordList wordlist, string finishword)
+        {
+
+            wordlist.FinishwordExistsInList(finishword);
+
+            if (wordlist.ExistsInList == false)
+            {
+                System.Console.WriteLine("Sorry, the finish word has to be in your dictionary file");
+                return;
+            }
 
         }
 
 
-        //public static void Main(String[] args)
+
+        public WordList CreateWordListFromInputWordFile(string Filepath)
+        {
+
+            List<string> _wordList;
+            _wordList = File.ReadAllLines(Filepath).ToList();
+
+            WordList wordlist = new WordList(_wordList);
+
+            return wordlist;
+
+        }
+
+
         static void Main()
         {
             Console console = new Console();
@@ -187,6 +217,20 @@ namespace ConsoleApplication
 
 
 
+    }
+
+
+    public class WordFilePath
+    {
+        public string Filepath { get; set; }
+
+        public string GetWordFilePath()
+        {
+            System.Console.Write("Enter file name :\n ");
+            string filename = System.Console.ReadLine();
+            string Filepath = AppContext.BaseDirectory + @"\" + filename;
+            return Filepath;
+        }
     }
 
 
