@@ -39,41 +39,11 @@ namespace ConsoleApplication
             wordlistinstance.RemoveIncorrectLength(inputwordinstance.Seedword);
 
 
-            //=====
-
-
-
-
-
-
-
-
             WordLadderSolution WordLadderInstance = new WordLadderSolution();
 
             IList<IList<string>> ladders = WordLadderInstance.FindLadders(inputwordinstance.Seedword, inputwordinstance.Finishword, wordlistinstance._wordList);
 
-
-            string strFilePath = AppContext.BaseDirectory + @"\Data.csv";
-            string strSeperator = ",";
-            StringBuilder sbOutput = new StringBuilder();
-
-            int i = 0;
-            foreach (var item in ladders)
-            {
-                i++;
-                sbOutput.AppendLine(string.Join(strSeperator, ""));
-                sbOutput.Append(string.Join(strSeperator, "Ladder" + i));
-                foreach (var item1 in item)
-                {
-                    sbOutput.Append(string.Join(strSeperator, ","));
-                    sbOutput.Append(string.Join(strSeperator, item1));
-                }
-            }
-
-            File.WriteAllText(strFilePath, sbOutput.ToString());
-
-
-
+            WriteLaddersToCsvFile(ladders);
 
         }
 
@@ -131,6 +101,32 @@ namespace ConsoleApplication
             WordList wordlist = new WordList(_wordList);
 
             return wordlist;
+
+        }
+
+
+        public void WriteLaddersToCsvFile(IList<IList<string>> ladders)
+        {
+
+
+            string strFilePath = AppContext.BaseDirectory + @"\Data.csv";
+            string strSeperator = ",";
+            StringBuilder StringOfWordLadders = new StringBuilder();
+
+            int i = 0;
+            foreach (var item in ladders)
+            {
+                i++;
+                StringOfWordLadders.AppendLine(string.Join(strSeperator, ""));
+                StringOfWordLadders.Append(string.Join(strSeperator, "Ladder" + i));
+                foreach (var item1 in item)
+                {
+                    StringOfWordLadders.Append(string.Join(strSeperator, ","));
+                    StringOfWordLadders.Append(string.Join(strSeperator, item1));
+                }
+            }
+
+            File.WriteAllText(strFilePath, StringOfWordLadders.ToString());
 
         }
 
