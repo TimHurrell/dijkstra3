@@ -43,14 +43,14 @@ namespace WordLadderLibrary
 
             return (misMatchCount == 1);
         }
-        public List<Node> BuildGraph(IList<string> wordList, string beginWord)
+        public List<Node> BuildGraph(IList<string> listofwordsfromwordfile, string beginWord)
         {
             var graph = new List<Node>();
 
-            if (!wordList.Contains(beginWord))
+            if (!listofwordsfromwordfile.Contains(beginWord))
                 graph.Add(new Node() { Value = beginWord });
 
-            foreach (var word in wordList)
+            foreach (var word in listofwordsfromwordfile)
             {
                 var node = new Node()
                 {
@@ -74,9 +74,9 @@ namespace WordLadderLibrary
         }
 
         public IList<IList<string>> FindLadders(
-            string beginWord, string endWord, IList<string> wordList)
+            string beginWord, string endWord, IList<string> listofwordsfromwordfile)
         {
-            var graph = BuildGraph(wordList, beginWord);
+            var graph = BuildGraph(listofwordsfromwordfile, beginWord);
 
             var startNode = graph.Single(x => x.Value.Equals(beginWord));
 

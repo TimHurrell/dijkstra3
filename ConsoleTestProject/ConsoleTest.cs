@@ -9,36 +9,36 @@ namespace ConsoleTestProject
 {
     public class TestRecordsFile
     {
-        List<string> _wordList;
+        readonly List<string> _listofwordsfromwordfile;
 
         public TestRecordsFile()
         {
             string path = AppContext.BaseDirectory;
-            string Filepath = path + @"\words-english.txt";
-            _wordList = File.ReadAllLines(Filepath).ToList();
+            string listofwordsfromwordfilefilepath = path + @"\words-english.txt";
+            _listofwordsfromwordfile = File.ReadAllLines(listofwordsfromwordfilefilepath).ToList();
         }
 
 
         [Fact]
-        public void CheckWordListConstructor()
+        public void ChecklistofwordsfromwordfileConstructor()
         {
-            WordList wordlistinstance = new WordList(_wordList);
-            Assert.Equal("AAA", wordlistinstance._wordList[12]);
+            Listofwordsfromwordfile listofwordsfromwordfileinstance = new Listofwordsfromwordfile(_listofwordsfromwordfile);
+            Assert.Equal("AAA", listofwordsfromwordfileinstance._listofwordsfromwordfile[12]);
         }
 
 
         [Fact]
         public void CheckListOnlyContains3LetterWordsTestLimitedSelectionTrue()
         {
-            WordList wordlistinstance = new WordList();
-            InputWord inputwordinstance = new InputWord();
-            wordlistinstance._wordList = new List<string> { "hot", "dot", "doog", "lot", "log", "cog" };
-            inputwordinstance.Seedword = "Ben";
-            wordlistinstance.RemoveIncorrectLength(inputwordinstance.Seedword);
+            Listofwordsfromwordfile listofwordsfromwordfileinstance = new Listofwordsfromwordfile();
+            InputWordsForWordLadders InputWordsForWordLaddersinstance = new InputWordsForWordLadders();
+            listofwordsfromwordfileinstance._listofwordsfromwordfile = new List<string> { "hot", "dot", "doog", "lot", "log", "cog" };
+            InputWordsForWordLaddersinstance.Seedword = "Ben";
+            listofwordsfromwordfileinstance.RemoveIncorrectLength(InputWordsForWordLaddersinstance.Seedword);
 
 
             Boolean testresult = true;
-            foreach (var word in wordlistinstance._wordList)
+            foreach (var word in listofwordsfromwordfileinstance._listofwordsfromwordfile)
             {
                 if (word.Length != 3)
                 {
@@ -56,16 +56,16 @@ namespace ConsoleTestProject
         [Fact]
         public void CheckListOnlyContains3LetterWordsTestLimitedSelectionFalse()
         {
-            WordList wordlistinstance = new WordList
+            Listofwordsfromwordfile listofwordsfromwordfileinstance = new Listofwordsfromwordfile
             {
-                _wordList = new List<string> { "hot", "dot", "doog", "lot", "log", "cog" }
+                _listofwordsfromwordfile = new List<string> { "hot", "dot", "doog", "lot", "log", "cog" }
             };
-            InputWord inputwordinstance = new InputWord
+            _ = new InputWordsForWordLadders
             {
                 Seedword = "Ben"
             };
             Boolean testresult = true;
-            foreach (var word in wordlistinstance._wordList)
+            foreach (var word in listofwordsfromwordfileinstance._listofwordsfromwordfile)
             {
                 if (word.Length != 3)
                 {
@@ -82,16 +82,16 @@ namespace ConsoleTestProject
         [Fact]
         public void CheckListOnlyContains3LetterWordsTestFullSelectionTrue()
         {
-            WordList wordlistinstance = new WordList(_wordList);
-            InputWord inputwordinstance = new InputWord
+            Listofwordsfromwordfile listofwordsfromwordfileinstance = new Listofwordsfromwordfile(_listofwordsfromwordfile);
+            InputWordsForWordLadders InputWordsForWordLaddersinstance = new InputWordsForWordLadders
             {
                 Seedword = "Ben"
             };
-            wordlistinstance.RemoveIncorrectLength(inputwordinstance.Seedword);
+            listofwordsfromwordfileinstance.RemoveIncorrectLength(InputWordsForWordLaddersinstance.Seedword);
 
 
             Boolean testresult = true;
-            foreach (var word in wordlistinstance._wordList)
+            foreach (var word in listofwordsfromwordfileinstance._listofwordsfromwordfile)
             {
                 if (word.Length != 3)
                 {
@@ -109,11 +109,11 @@ namespace ConsoleTestProject
         [Fact]
         public void CheckListOnlyContains3LetterWordsTestFullSelectionFalse()
         {
-            WordList wordlistinstance = new WordList(_wordList);
+            Listofwordsfromwordfile listofwordsfromwordfileinstance = new Listofwordsfromwordfile(_listofwordsfromwordfile);
 
 
             Boolean testresult = true;
-            foreach (var word in wordlistinstance._wordList)
+            foreach (var word in listofwordsfromwordfileinstance._listofwordsfromwordfile)
             {
                 if (word.Length != 5)
                 {
@@ -130,18 +130,18 @@ namespace ConsoleTestProject
         [Fact]
         public void CheckListOnlyContainsWordsTestWhichMatchTheConstructorWordLength()
         {
-            WordList wordlistinstance = new WordList(_wordList);
-            InputWord inputwordinstance = new InputWord
+            Listofwordsfromwordfile listofwordsfromwordfileinstance = new Listofwordsfromwordfile(_listofwordsfromwordfile);
+            InputWordsForWordLadders InputWordsForWordLaddersinstance = new InputWordsForWordLadders
             {
                 Seedword = "Ben"
             };
-            wordlistinstance.RemoveIncorrectLength(inputwordinstance.Seedword);
+            listofwordsfromwordfileinstance.RemoveIncorrectLength(InputWordsForWordLaddersinstance.Seedword);
 
 
             Boolean testresult = true;
-            foreach (var word in wordlistinstance._wordList)
+            foreach (var word in listofwordsfromwordfileinstance._listofwordsfromwordfile)
             {
-                if (word.Length != inputwordinstance.Seedword.Length)
+                if (word.Length != InputWordsForWordLaddersinstance.Seedword.Length)
                 {
                     testresult = false;
                 }
@@ -153,34 +153,34 @@ namespace ConsoleTestProject
         [Fact]
         public void CheckInputAndEndWordsSameLengthTrue()
         {
-            InputWord inputwordinstance = new InputWord();
+            InputWordsForWordLadders InputWordsForWordLaddersinstance = new InputWordsForWordLadders();
 
-            Assert.True(inputwordinstance.AreWordsDifferentLength("Good", "Bad"));
+            Assert.True(InputWordsForWordLaddersinstance.AreWordsDifferentLength("Good", "Bad"));
         }
 
 
         [Fact]
         public void CheckInputAndEndWordsSameLengthFalse()
         {
-            InputWord inputwordinstance = new InputWord();
+            InputWordsForWordLadders InputWordsForWordLaddersinstance = new InputWordsForWordLadders();
 
-            Assert.False(inputwordinstance.AreWordsDifferentLength("Good", "Goad"));
+            Assert.False(InputWordsForWordLaddersinstance.AreWordsDifferentLength("Good", "Goad"));
         }
 
         [Fact]
         public void CheckInputAndEndWordsSame()
         {
-            InputWord inputwordinstance = new InputWord();
+            InputWordsForWordLadders InputWordsForWordLaddersinstance = new InputWordsForWordLadders();
 
-            Assert.False(inputwordinstance.AreWordsDifferent("Good", "Good"));
+            Assert.False(InputWordsForWordLaddersinstance.AreWordsDifferent("Good", "Good"));
         }
 
         [Fact]
         public void CheckInputAndEndWordsDifferent()
         {
-            InputWord inputwordinstance = new InputWord();
+            InputWordsForWordLadders InputWordsForWordLaddersinstance = new InputWordsForWordLadders();
 
-            Assert.True(inputwordinstance.AreWordsDifferent("Good", "Goad"));
+            Assert.True(InputWordsForWordLaddersinstance.AreWordsDifferent("Good", "Goad"));
         }
 
       
@@ -190,14 +190,14 @@ namespace ConsoleTestProject
         {
             List<string> words = new List<string>() { "cog", "mat" };
 
-            WordList wordlistinstance = new WordList(words);
-            InputWord inputwordinstance = new InputWord
+            Listofwordsfromwordfile listofwordsfromwordfileinstance = new Listofwordsfromwordfile(words);
+            InputWordsForWordLadders InputWordsForWordLaddersinstance = new InputWordsForWordLadders
             {
                 Finishword = "cog"
             };
-            wordlistinstance.FinishwordExistsInList(inputwordinstance.Finishword);
+            listofwordsfromwordfileinstance.FinishwordExistsInList(InputWordsForWordLaddersinstance.Finishword);
 
-            Assert.True(wordlistinstance.ExistsInList);
+            Assert.True(listofwordsfromwordfileinstance.ExistsInList);
         }
 
 
@@ -206,14 +206,14 @@ namespace ConsoleTestProject
         {
             List<string> words = new List<string>() { "cog", "mat" };
 
-            WordList wordlistinstance = new WordList(words);
-            InputWord inputwordinstance = new InputWord
+            Listofwordsfromwordfile listofwordsfromwordfileinstance = new Listofwordsfromwordfile(words);
+            InputWordsForWordLadders InputWordsForWordLaddersinstance = new InputWordsForWordLadders
             {
                 Finishword = "Cog"
             };
-            wordlistinstance.FinishwordExistsInList(inputwordinstance.Finishword);
+            listofwordsfromwordfileinstance.FinishwordExistsInList(InputWordsForWordLaddersinstance.Finishword);
 
-            Assert.False(wordlistinstance.ExistsInList);
+            Assert.False(listofwordsfromwordfileinstance.ExistsInList);
         }
 
      

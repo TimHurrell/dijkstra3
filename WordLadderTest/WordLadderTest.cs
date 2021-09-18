@@ -17,7 +17,7 @@ namespace WordLadderTest
         [Fact]
         public void GetFindLadderTest()
         {
-            List<String> wordList = new List<string> { "hot", "dot", "dog", "lot", "log", "cog" };
+            List<String> listofwordsfromwordfile = new List<string> { "hot", "dot", "dog", "lot", "log", "cog" };
             string beginWord = "hit";
             string endWord = "cog";
             List<List<string>> transformation = new List<List<string>>
@@ -31,9 +31,9 @@ namespace WordLadderTest
 
 
 
-            WordLadderInstance.FindLadders(beginWord, endWord, wordList);
+            WordLadderInstance.FindLadders(beginWord, endWord, listofwordsfromwordfile);
 
-            Assert.Equal(WordLadderInstance.FindLadders(beginWord, endWord, wordList), transformation);
+            Assert.Equal(WordLadderInstance.FindLadders(beginWord, endWord, listofwordsfromwordfile), transformation);
         }
 
         [Fact]
