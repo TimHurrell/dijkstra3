@@ -12,26 +12,13 @@ namespace ConsoleApplication
     {
         public void Process()
         {
-            InputWord inputwordinstance = new InputWord
-            {
-                Seedword = null
-            };
-            inputwordinstance = Intro();
+            InputWord inputwordinstance = Intro();
 
-
-
-
-            WordFilePath Filepathinstance = new WordFilePath
-            {
-                Filepath = null
-            };
-            string Filepath = Filepathinstance.GetWordFilePath();
-
-
-
+            System.Console.Write("Enter file name :\n ");
+            string filename = System.Console.ReadLine();
+            string Filepath = Path.Combine(AppContext.BaseDirectory, filename);
 
             WordList wordlistinstance = CreateWordListFromInputWordFile(Filepath);
-
 
             FinishWordExistsInList(wordlistinstance, inputwordinstance.Finishword);
 
@@ -64,7 +51,7 @@ namespace ConsoleApplication
             {
                 System.Console.WriteLine("Sorry, words need to be the same length");
                 return inputwordinstance;
-            } 
+            }
 
             if (inputwordinstance.AreWordsDifferent(inputwordinstance.Seedword, inputwordinstance.Finishword) == false)
             {
@@ -77,19 +64,16 @@ namespace ConsoleApplication
         }
 
 
-        public void FinishWordExistsInList (WordList wordlist, string finishword)
+        public void FinishWordExistsInList(WordList wordlist, string finishword)
         {
 
             wordlist.FinishwordExistsInList(finishword);
 
-            if (wordlist.ExistsInList == false)
+            if (!wordlist.ExistsInList)
             {
                 System.Console.WriteLine("Sorry, the finish word has to be in your dictionary file");
-                return;
             }
-
         }
-
 
 
         public WordList CreateWordListFromInputWordFile(string Filepath)
@@ -101,7 +85,6 @@ namespace ConsoleApplication
             WordList wordlist = new WordList(_wordList);
 
             return wordlist;
-
         }
 
 
@@ -140,13 +123,15 @@ namespace ConsoleApplication
     }
 
 
-
+    //often I start with tests and classes in the same file when initially coding
+    //however once the code matures I would typically put each class in its own file
     public class InputWord
-        {
-            public string Seedword { get; set; }
-            public string Finishword { get; set; }
+    {
+        public string Seedword { get; set; }
+        public string Finishword { get; set; }
 
 
+        // these methods are so similar its probably not worth testing them.
         public bool AreWordsDifferentLength(string inputWord, string endWord)
         {
             return inputWord.Length != endWord.Length;
@@ -159,7 +144,7 @@ namespace ConsoleApplication
         }
 
     }
-   
+
 
 
     public class WordList
@@ -209,27 +194,16 @@ namespace ConsoleApplication
                 }
             }
         }
-
-
-
-
     }
 
 
     public class WordFilePath
     {
-        public string Filepath { get; set; }
-
         public string GetWordFilePath()
         {
             System.Console.Write("Enter file name :\n ");
             string filename = System.Console.ReadLine();
-            string Filepath = AppContext.BaseDirectory + @"\" + filename;
-            return Filepath;
+            return AppContext.BaseDirectory + @"\" + filename;
         }
     }
-
-
-
-
 }

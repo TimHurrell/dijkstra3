@@ -6,14 +6,8 @@ using Xunit;
 
 namespace WordLadderTest
 {
-   
-
-
-
-
     public class TestRecordsFile
     {
-
         [Fact]
         public void GetFindLadderTest()
         {
@@ -22,18 +16,14 @@ namespace WordLadderTest
             string endWord = "cog";
             List<List<string>> transformation = new List<List<string>>
             {
-            new List<string> { "hit", "hot", "dot", "dog", "cog" },
-            new List<string> { "hit", "hot", "lot", "log", "cog" }
+                new List<string> { "hit", "hot", "dot", "dog", "cog" },
+                new List<string> { "hit", "hot", "lot", "log", "cog" }
             };
 
 
             WordLadderSolution WordLadderInstance = new WordLadderSolution();
 
-
-
-            WordLadderInstance.FindLadders(beginWord, endWord, wordList);
-
-            Assert.Equal(WordLadderInstance.FindLadders(beginWord, endWord, wordList), transformation);
+            Assert.Equal(transformation, WordLadderInstance.FindLadders(beginWord, endWord, wordList));
         }
 
         [Fact]
@@ -47,7 +37,6 @@ namespace WordLadderTest
 
         }
 
-
         [Fact]
         public void WithinSingleEditDistance2()
         {
@@ -58,7 +47,6 @@ namespace WordLadderTest
 
         }
 
-
         [Fact]
         public void WithinSingleEditDistance3()
         {
@@ -68,16 +56,5 @@ namespace WordLadderTest
             Assert.False(WordLadderInstance.WithinSingleEditDistance("eddi", "edey"));
 
         }
-
-
-
-
-
-       
-
-
-
     }
-
-
 }

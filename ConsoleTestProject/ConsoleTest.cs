@@ -60,10 +60,7 @@ namespace ConsoleTestProject
             {
                 _wordList = new List<string> { "hot", "dot", "doog", "lot", "log", "cog" }
             };
-            InputWord inputwordinstance = new InputWord
-            {
-                Seedword = "Ben"
-            };
+
             Boolean testresult = true;
             foreach (var word in wordlistinstance._wordList)
             {
@@ -74,8 +71,6 @@ namespace ConsoleTestProject
             }
 
             Assert.False(testresult);
-
-
 
         }
 
@@ -101,8 +96,6 @@ namespace ConsoleTestProject
 
             Assert.True(testresult);
 
-
-
         }
 
 
@@ -110,7 +103,6 @@ namespace ConsoleTestProject
         public void CheckListOnlyContains3LetterWordsTestFullSelectionFalse()
         {
             WordList wordlistinstance = new WordList(_wordList);
-
 
             Boolean testresult = true;
             foreach (var word in wordlistinstance._wordList)
@@ -122,8 +114,6 @@ namespace ConsoleTestProject
             }
 
             Assert.False(testresult);
-
-
 
         }
 
