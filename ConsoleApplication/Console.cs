@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using WordLadderLibrary;
+using InputwordClass;
+
 
 
 namespace ConsoleApplication
@@ -122,31 +124,6 @@ namespace ConsoleApplication
 
 
 
-
-    //often I start with tests and classes in the same file when initially coding
-    //however once the code matures I would typically put each class in its own file
-    public class InputWord
-    {
-        public string Seedword { get; set; }
-        public string Finishword { get; set; }
-
-
-        // these methods are so similar its probably not worth testing them.
-        public bool AreWordsDifferentLength(string inputWord, string endWord)
-        {
-            return inputWord.Length != endWord.Length;
-
-        }
-
-        public bool AreWordsDifferent(string inputWord, string endWord)
-        {
-            return inputWord != endWord;
-        }
-
-    }
-
-
-
     public class WordList
     {
         public List<string> _wordList { get; set; }
@@ -197,14 +174,4 @@ namespace ConsoleApplication
     }
 
 
-    public class WordFilePath
-    {
-
-        public string GetWordFilePath()
-        {
-            System.Console.Write("Enter file name :\n ");
-            string filename = System.Console.ReadLine();
-            return AppContext.BaseDirectory + @"\" + filename;
-        }
-    }
 }
