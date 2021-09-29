@@ -7,7 +7,7 @@ namespace InputwordClass
 
 
 
-    public class InputWord
+    public class InputWordsForWordLadders
     {
         public string Seedword { get; set; }
         public string Finishword { get; set; }

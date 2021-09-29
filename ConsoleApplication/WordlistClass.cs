@@ -8,16 +8,16 @@ using System.Collections.Generic;
 namespace WordlistClass
 {
 
-        public class WordList
+        public class Listofwordsfromwordfile
         {
-            public List<string> _wordList { get; set; }
+            public List<string> _listofwordsfromwordfile { get; set; }
             //inject the dependency
             //this type of dependency injection is known as constructor injection
-            public WordList(List<string> wordList)
+            public Listofwordsfromwordfile(List<string> listofwordsfromwordfile)
             {
-                _wordList = wordList;
+                _listofwordsfromwordfile = listofwordsfromwordfile;
             }
-            public WordList()
+            public Listofwordsfromwordfile()
             {
             }
             public bool ExistsInList { get; set; }
@@ -30,22 +30,22 @@ namespace WordlistClass
 
 
 
-            public List<string> RemoveIncorrectLength(string inputwordinstance)
+            public List<string> RemoveIncorrectLength(string InputWordsForWordLaddersinstance)
             {
-                List<string> amendedwordlist = new List<string> { };
-                foreach (var word in _wordList)
+                List<string> amendedlistofwordsfromwordfile = new List<string> { };
+                foreach (var word in _listofwordsfromwordfile)
                 {
-                    if (word.Length == inputwordinstance.Length)
+                    if (word.Length == InputWordsForWordLaddersinstance.Length)
                     {
-                        amendedwordlist.Add(word);
+                        amendedlistofwordsfromwordfile.Add(word);
                     }
                 }
-                _wordList = amendedwordlist;
-                return _wordList;
+                _listofwordsfromwordfile = amendedlistofwordsfromwordfile;
+                return _listofwordsfromwordfile;
             }
             public void FinishwordExistsInList(string endword)
             {
-                foreach (var word in _wordList)
+                foreach (var word in _listofwordsfromwordfile)
                 {
 
 

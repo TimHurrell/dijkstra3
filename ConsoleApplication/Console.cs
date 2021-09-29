@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using WordLadderLibrary;
 using InputwordClass;
+using WordlistClass;
 
 
 
@@ -15,43 +16,43 @@ namespace ConsoleApplication
     {
         public void Process()
         {
-            InputWord inputwordinstance = Intro();
+            InputWordsForWordLadders InputWordsForWordLaddersinstance = Intro();
 
 
             System.Console.Write("Enter file name :\n ");
             string filename = System.Console.ReadLine();
             string Filepath = Path.Combine(AppContext.BaseDirectory, filename);
-            WordList wordlistinstance = CreateWordListFromInputWordFile(Filepath);
-            FinishWordExistsInList(wordlistinstance, inputwordinstance.Finishword);
+            Listofwordsfromwordfile wordlistinstance = CreateWordListFromInputWordFile(Filepath);
+            FinishWordExistsInList(wordlistinstance, InputWordsForWordLaddersinstance.Finishword);
 
 
-            wordlistinstance.RemoveIncorrectLength(inputwordinstance.Seedword);
+            wordlistinstance.RemoveIncorrectLength(InputWordsForWordLaddersinstance.Seedword);
             WordLadderSolution WordLadderInstance = new WordLadderSolution();
-            IList<IList<string>> ladders = WordLadderInstance.FindLadders(inputwordinstance.Seedword, inputwordinstance.Finishword, wordlistinstance._wordList);
+            IList<IList<string>> ladders = WordLadderInstance.FindLadders(InputWordsForWordLaddersinstance.Seedword, InputWordsForWordLaddersinstance.Finishword, wordlistinstance._listofwordsfromwordfile);
             WriteLaddersToCsvFile(ladders);
         }
-        public InputWord Intro()
+        public InputWordsForWordLadders Intro()
         {
             System.Console.Write("Enter start word : \n");
-            InputWord inputwordinstance = new InputWord
+            InputWordsForWordLadders InputWordsForWordLaddersinstance = new InputWordsForWordLadders
             {
                 Seedword = System.Console.ReadLine()
             };
             System.Console.Write("Enter finish word :\n ");
-            inputwordinstance.Finishword = System.Console.ReadLine();
-            System.Console.WriteLine(inputwordinstance.Seedword);
-            System.Console.WriteLine(inputwordinstance.Finishword);
-            if (inputwordinstance.AreWordsDifferentLength(inputwordinstance.Seedword, inputwordinstance.Finishword))
+            InputWordsForWordLaddersinstance.Finishword = System.Console.ReadLine();
+            System.Console.WriteLine(InputWordsForWordLaddersinstance.Seedword);
+            System.Console.WriteLine(InputWordsForWordLaddersinstance.Finishword);
+            if (InputWordsForWordLaddersinstance.AreWordsDifferentLength(InputWordsForWordLaddersinstance.Seedword, InputWordsForWordLaddersinstance.Finishword))
             {
                 System.Console.WriteLine("Sorry, words need to be the same length");
-                return inputwordinstance;
+                return InputWordsForWordLaddersinstance;
             }
-            if (inputwordinstance.AreWordsDifferent(inputwordinstance.Seedword, inputwordinstance.Finishword) == false)
+            if (InputWordsForWordLaddersinstance.AreWordsDifferent(InputWordsForWordLaddersinstance.Seedword, InputWordsForWordLaddersinstance.Finishword) == false)
             {
                 System.Console.WriteLine("Sorry, words need to be different");
-                return inputwordinstance;
+                return InputWordsForWordLaddersinstance;
             }
-            return inputwordinstance;
+            return InputWordsForWordLaddersinstance;
         }
 
 
@@ -66,7 +67,7 @@ namespace ConsoleApplication
 
 
 
-        public void FinishWordExistsInList(WordList wordlist, string finishword)
+        public void FinishWordExistsInList(Listofwordsfromwordfile wordlist, string finishword)
         {
 
             wordlist.FinishwordExistsInList(finishword);
@@ -78,12 +79,12 @@ namespace ConsoleApplication
 
         }
 
-        public WordList CreateWordListFromInputWordFile(string Filepath)
+        public Listofwordsfromwordfile CreateWordListFromInputWordFile(string Filepath)
         {
 
-            List<string> _wordList;
-            _wordList = File.ReadAllLines(Filepath).ToList();
-            WordList wordlist = new WordList(_wordList);
+            List<string> _listofwordsfromwordfile;
+            _listofwordsfromwordfile = File.ReadAllLines(Filepath).ToList();
+            Listofwordsfromwordfile wordlist = new Listofwordsfromwordfile(_listofwordsfromwordfile);
 
             return wordlist;
 
@@ -117,59 +118,6 @@ namespace ConsoleApplication
         {
             Console console = new Console();
             console.Process();
-        }
-    }
-
-
-
-
-
-    public class WordList
-    {
-        public List<string> _wordList { get; set; }
-        //inject the dependency
-        //this type of dependency injection is known as constructor injection
-        public WordList(List<string> wordList)
-        {
-            _wordList = wordList;
-        }
-        public WordList()
-        {
-        }
-        public bool ExistsInList { get; set; }
-
-
-
-
-
-
-
-
-
-        public List<string> RemoveIncorrectLength(string inputwordinstance)
-        {
-            List<string> amendedwordlist = new List<string> { };
-            foreach (var word in _wordList)
-            {
-                if (word.Length == inputwordinstance.Length)
-                {
-                    amendedwordlist.Add(word);
-                }
-            }
-            _wordList = amendedwordlist;
-            return _wordList;
-        }
-        public void FinishwordExistsInList(string endword)
-        {
-            foreach (var word in _wordList)
-            {
-
-
-                if (endword == word)
-                {
-                    ExistsInList = true;
-                }
-            }
         }
     }
 
