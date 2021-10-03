@@ -70,7 +70,7 @@ namespace ConsoleTestProject
                 Seedword = "Ben"
             };
             wordlistinstance.RemoveIncorrectLength(InputWordsForWordLaddersinstance.Seedword);
-            Boolean testresult = true;
+            bool testresult = true;
             foreach (var word in wordlistinstance._listofwordsfromwordfile)
             {
                 if (word.Length != 3)
@@ -88,7 +88,7 @@ namespace ConsoleTestProject
         {
             Listofwordsfromwordfile wordlistinstance = new Listofwordsfromwordfile(_listofwordsfromwordfile);
 
-            Boolean testresult = true;
+            bool testresult = true;
             foreach (var word in wordlistinstance._listofwordsfromwordfile)
             {
                 if (word.Length != 5)

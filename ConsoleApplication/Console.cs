@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -7,8 +6,6 @@ using System.Text;
 using WordLadderLibrary;
 using InputwordClass;
 using WordlistClass;
-
-
 
 namespace ConsoleApplication
 {
@@ -18,11 +15,10 @@ namespace ConsoleApplication
         {
             InputWordsForWordLadders InputWordsForWordLaddersinstance = Intro();
 
-
             System.Console.Write("Enter file name :\n ");
             string filename = System.Console.ReadLine();
-            string Filepath = Path.Combine(AppContext.BaseDirectory, filename);
-            Listofwordsfromwordfile wordlistinstance = CreateWordListFromInputWordFile(Filepath);
+            string filePath = Path.Combine(AppContext.BaseDirectory, filename);
+            Listofwordsfromwordfile wordlistinstance = CreateWordListFromInputWordFile(filePath);
             FinishWordExistsInList(wordlistinstance, InputWordsForWordLaddersinstance.Finishword);
 
 
@@ -55,42 +51,26 @@ namespace ConsoleApplication
             return InputWordsForWordLaddersinstance;
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
         public void FinishWordExistsInList(Listofwordsfromwordfile wordlist, string finishword)
         {
             if (!wordlist.FinishwordExistsInList(finishword))
             {
                 System.Console.WriteLine("Sorry, the finish word has to be in your dictionary file");
             }
-
         }
 
         public Listofwordsfromwordfile CreateWordListFromInputWordFile(string Filepath)
         {
-
             List<string> _listofwordsfromwordfile;
             _listofwordsfromwordfile = File.ReadAllLines(Filepath).ToList();
-            Listofwordsfromwordfile wordlist = new Listofwordsfromwordfile(_listofwordsfromwordfile);
-
-            return wordlist;
-
+            return new Listofwordsfromwordfile(_listofwordsfromwordfile);
         }
 
-
+        //TODO we can write a test for this, but we need to split the method up so that it returns a string
+        //we're not interested in testing that we can write a file but more interested in what the contents of the file is.
         public void WriteLaddersToCsvFile(IList<IList<string>> ladders)
         {
-            string strFilePath = AppContext.BaseDirectory + @"\Data.csv";
+            string strFilePath = Path.Combine(AppContext.BaseDirectory, "Data.csv");
             string strSeperator = ",";
             StringBuilder StringOfWordLadders = new StringBuilder();
             int i = 0;
@@ -105,9 +85,6 @@ namespace ConsoleApplication
                     StringOfWordLadders.Append(string.Join(strSeperator, item1));
                 }
             }
-
-
-
 
             File.WriteAllText(strFilePath, StringOfWordLadders.ToString());
         }

@@ -1,50 +1,36 @@
-﻿
-
-using System.Collections.Generic;
-
-
-
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace WordlistClass
 {
 
-        public class Listofwordsfromwordfile
+    public class Listofwordsfromwordfile
+    {
+        public List<string> _listofwordsfromwordfile { get; set; }
+        //inject the dependency
+        //this type of dependency injection is known as constructor injection
+        public Listofwordsfromwordfile(List<string> listofwordsfromwordfile)
         {
-            public List<string> _listofwordsfromwordfile { get; set; }
-            //inject the dependency
-            //this type of dependency injection is known as constructor injection
-            public Listofwordsfromwordfile(List<string> listofwordsfromwordfile)
-            {
-                _listofwordsfromwordfile = listofwordsfromwordfile;
-            }
-            public Listofwordsfromwordfile()
-            {
-            }
+            _listofwordsfromwordfile = listofwordsfromwordfile;
+        }
+        public Listofwordsfromwordfile()
+        {
+        }
 
-            public List<string> RemoveIncorrectLength(string InputWordsForWordLaddersinstance)
-            {
-                List<string> amendedlistofwordsfromwordfile = new List<string> { };
-                foreach (var word in _listofwordsfromwordfile)
-                {
-                    if (word.Length == InputWordsForWordLaddersinstance.Length)
-                    {
-                        amendedlistofwordsfromwordfile.Add(word);
-                    }
-                }
-                _listofwordsfromwordfile = amendedlistofwordsfromwordfile;
-                return _listofwordsfromwordfile;
-            }
+        public List<string> RemoveIncorrectLength(string inputWordsForWordLaddersinstance)
+        {
+            //I've used LINQ here which is a more terse way of manipulating lists.
+            //We've not covered this yet
+            _listofwordsfromwordfile = _listofwordsfromwordfile.Where(o => o.Length == inputWordsForWordLaddersinstance.Length).ToList();
+            return _listofwordsfromwordfile;
+        }
 
-            public bool FinishwordExistsInList(string endword)
-            {
-                foreach (var word in _listofwordsfromwordfile)
-                {
-                    if (endword == word)
-                    {
-                        return true;
-                    }
-                }
-            return false;
-            }
+        //TODO can you think of less specific name of this method.
+        //Would it work for other words besides the endword?
+        public bool FinishwordExistsInList(string endword)
+        {
+            //Again using LINQ to find containing word
+            return _listofwordsfromwordfile.Contains(endword);
         }
     }
+}
