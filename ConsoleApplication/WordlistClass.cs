@@ -20,15 +20,6 @@ namespace WordlistClass
             public Listofwordsfromwordfile()
             {
             }
-            public bool ExistsInList { get; set; }
-
-
-
-
-
-
-
-
 
             public List<string> RemoveIncorrectLength(string InputWordsForWordLaddersinstance)
             {
@@ -43,26 +34,17 @@ namespace WordlistClass
                 _listofwordsfromwordfile = amendedlistofwordsfromwordfile;
                 return _listofwordsfromwordfile;
             }
-            public void FinishwordExistsInList(string endword)
+
+            public bool FinishwordExistsInList(string endword)
             {
                 foreach (var word in _listofwordsfromwordfile)
                 {
-
-
                     if (endword == word)
                     {
-                        ExistsInList = true;
+                        return true;
                     }
                 }
+            return false;
             }
         }
-
-
-
-
-
-
-
-
-
     }

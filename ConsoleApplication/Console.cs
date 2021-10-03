@@ -69,10 +69,7 @@ namespace ConsoleApplication
 
         public void FinishWordExistsInList(Listofwordsfromwordfile wordlist, string finishword)
         {
-
-            wordlist.FinishwordExistsInList(finishword);
-
-            if (!wordlist.ExistsInList)
+            if (!wordlist.FinishwordExistsInList(finishword))
             {
                 System.Console.WriteLine("Sorry, the finish word has to be in your dictionary file");
             }

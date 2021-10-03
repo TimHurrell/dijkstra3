@@ -9,13 +9,13 @@ namespace ConsoleTestProject
 {
     public class TestRecordsFile
     {
-        List<string> _listofwordsfromwordfile;
+        readonly List<string> _listofwordsfromwordfile;
         public TestRecordsFile()
         {
-            string path = AppContext.BaseDirectory;
-            string Filepath = path + @"\words-english.txt";
+            string Filepath = Path.Combine(AppContext.BaseDirectory, "words-english.txt");
             _listofwordsfromwordfile = File.ReadAllLines(Filepath).ToList();
         }
+
         [Fact]
         public void CheckWordListConstructor()
         {
@@ -49,7 +49,7 @@ namespace ConsoleTestProject
             };
           
 
-            Boolean testresult = true;
+            bool testresult = true;
             foreach (var word in wordlistinstance._listofwordsfromwordfile)
             {
                 if (word.Length != 3)
@@ -59,9 +59,6 @@ namespace ConsoleTestProject
             }
 
             Assert.False(testresult);
-
-
-
         }
 
         [Fact]
@@ -83,9 +80,6 @@ namespace ConsoleTestProject
             }
 
             Assert.True(testresult);
-
-
-
         }
 
 
@@ -93,7 +87,6 @@ namespace ConsoleTestProject
         public void CheckListOnlyContains3LetterWordsTestFullSelectionFalse()
         {
             Listofwordsfromwordfile wordlistinstance = new Listofwordsfromwordfile(_listofwordsfromwordfile);
-
 
             Boolean testresult = true;
             foreach (var word in wordlistinstance._listofwordsfromwordfile)
@@ -105,9 +98,6 @@ namespace ConsoleTestProject
             }
 
             Assert.False(testresult);
-
-
-
         }
 
         [Fact]
@@ -159,24 +149,15 @@ namespace ConsoleTestProject
         {
             List<string> words = new List<string>() { "cog", "mat" };
             Listofwordsfromwordfile wordlistinstance = new Listofwordsfromwordfile(words);
-            InputWordsForWordLadders InputWordsForWordLaddersinstance = new InputWordsForWordLadders
-            {
-                Finishword = "cog"
-            };
-            wordlistinstance.FinishwordExistsInList(InputWordsForWordLaddersinstance.Finishword);
-            Assert.True(wordlistinstance.ExistsInList);
+            
+            Assert.True(wordlistinstance.FinishwordExistsInList("cog"));
         }
         [Fact]
         public void CheckEndWordExistsInListFalse()
         {
             List<string> words = new List<string>() { "cog", "mat" };
             Listofwordsfromwordfile wordlistinstance = new Listofwordsfromwordfile(words);
-            InputWordsForWordLadders InputWordsForWordLaddersinstance = new InputWordsForWordLadders
-            {
-                Finishword = "Cog"
-            };
-            wordlistinstance.FinishwordExistsInList(InputWordsForWordLaddersinstance.Finishword);
-            Assert.False(wordlistinstance.ExistsInList);
+            Assert.False(wordlistinstance.FinishwordExistsInList("Cog"));
         }
 
     }
