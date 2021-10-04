@@ -150,14 +150,14 @@ namespace ConsoleTestProject
             List<string> words = new List<string>() { "cog", "mat" };
             Listofwordsfromwordfile wordlistinstance = new Listofwordsfromwordfile(words);
             
-            Assert.True(wordlistinstance.FinishwordExistsInList("cog"));
+            Assert.True(wordlistinstance.WordExistsInListFromWordFile("cog"));
         }
         [Fact]
         public void CheckEndWordExistsInListFalse()
         {
             List<string> words = new List<string>() { "cog", "mat" };
             Listofwordsfromwordfile wordlistinstance = new Listofwordsfromwordfile(words);
-            Assert.False(wordlistinstance.FinishwordExistsInList("Cog"));
+            Assert.False(wordlistinstance.WordExistsInListFromWordFile("Cog"));
         }
 
     }

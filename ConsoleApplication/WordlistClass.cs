@@ -27,7 +27,7 @@ namespace WordlistClass
 
         //TODO can you think of less specific name of this method.
         //Would it work for other words besides the endword?
-        public bool FinishwordExistsInList(string endword)
+        public bool WordExistsInListFromWordFile(string endword)
         {
             //Again using LINQ to find containing word
             return _listofwordsfromwordfile.Contains(endword);
