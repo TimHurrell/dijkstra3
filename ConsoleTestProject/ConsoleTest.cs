@@ -160,6 +160,18 @@ namespace ConsoleTestProject
             Assert.False(wordlistinstance.WordExistsInListFromWordFile("Cog"));
         }
 
+        [Fact]
+        public void CheckStringCreatedFromWordLadder()
+        {
+            List<List<string>> testwordladder = new List<List<string>>
+            {
+                new List<string> { "hit", "hot", "dot", "dog", "cog" }
+            };
+            string testoutputtedstring = "\nLadder1,hit, hot, dot, dog, cog";
+            //Test
+            //Assert.True(testoutputtedstring,wordlistinstance.WordExistsInListFromWordFile(testwordladder));
+        }
+
     }
 }
 

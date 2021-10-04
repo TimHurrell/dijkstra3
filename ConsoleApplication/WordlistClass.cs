@@ -27,10 +27,11 @@ namespace WordlistClass
 
         //TODO can you think of less specific name of this method.
         //Would it work for other words besides the endword?
-        public bool WordExistsInListFromWordFile(string endword)
+        //Done
+        public bool WordExistsInListFromWordFile(string word)
         {
             //Again using LINQ to find containing word
-            return _listofwordsfromwordfile.Contains(endword);
+            return _listofwordsfromwordfile.Contains(word);
         }
     }
 }
