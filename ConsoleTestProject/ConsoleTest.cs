@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using WordlistClass;
 using InputwordClass;
-using ConsoleApplication;
+using WordladderstringClass;
 using WordLadderLibrary;
 namespace ConsoleTestProject
 {
