@@ -68,26 +68,16 @@ namespace ConsoleApplication
         }
 
         //TODO we can write a test for this, but we need to split the method up so that it returns a string
-        //we're not interested in testing that we can write a file but more interested in what the contents of the file is.
+        //we're not interested in testing that we can write a file but more interested in what the contents of the file are.
+
+        // Done
         public void WriteLaddersToCsvFile(IList<IList<string>> ladders)
         {
             string strFilePath = Path.Combine(AppContext.BaseDirectory, "Data.csv");
-            string strSeperator = ",";
-            StringBuilder StringOfWordLadders = new StringBuilder();
-            int i = 0;
-            foreach (var item in ladders)
-            {
-                i++;
-                StringOfWordLadders.AppendLine(string.Join(strSeperator, ""));
-                StringOfWordLadders.Append(string.Join(strSeperator, "Ladder" + i));
-                foreach (var item1 in item)
-                {
-                    StringOfWordLadders.Append(string.Join(strSeperator, ","));
-                    StringOfWordLadders.Append(string.Join(strSeperator, item1));
-                }
-            }
 
-            File.WriteAllText(strFilePath, StringOfWordLadders.ToString());
+            StringOfWordLadder WordLadderString = new StringOfWordLadder();
+
+            File.WriteAllText(strFilePath, WordLadderString.GetStringOfWordLadder(ladders));
         }
         static void Main()
         {

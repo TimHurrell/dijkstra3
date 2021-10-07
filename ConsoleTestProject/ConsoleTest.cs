@@ -163,6 +163,8 @@ namespace ConsoleTestProject
         }
 
         [Fact]
+
+        // want to simplify this and not have to invoke the wordladder library file
         public void CheckStringCreatedFromWordLadder()
         {
             List<string> listofwordsfromwordfile = new List<string> { "hot", "dot", "dog", "lot", "log", "cog" };
