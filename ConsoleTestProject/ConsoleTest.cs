@@ -5,6 +5,8 @@ using System.IO;
 using System.Linq;
 using WordlistClass;
 using InputwordClass;
+using ConsoleApplication;
+using WordLadderLibrary;
 namespace ConsoleTestProject
 {
     public class TestRecordsFile
@@ -163,16 +165,28 @@ namespace ConsoleTestProject
         [Fact]
         public void CheckStringCreatedFromWordLadder()
         {
-            List<List<string>> testwordladder = new List<List<string>>
+            List<string> listofwordsfromwordfile = new List<string> { "hot", "dot", "dog", "lot", "log", "cog" };
+            string beginWord = "hit";
+            string endWord = "cog";
+            List<List<string>> expectedLadders = new List<List<string>>
             {
-                new List<string> { "hit", "hot", "dot", "dog", "cog" }
+                new List<string> { "hit", "hot", "dot", "dog", "cog" },
+                new List<string> { "hit", "hot", "lot", "log", "cog" }
             };
-            string testoutputtedstring = "\nLadder1,hit, hot, dot, dog, cog";
+
+            var foundLadders = new WordLadderSolution().FindLadders(beginWord, endWord, listofwordsfromwordfile);
+
+
+            string testoutputtedstring = "\r\nLadder1,hit,hot,dot,dog,cog\r\nLadder2,hit,hot,lot,log,cog";
+            StringOfWordLadder TestWordLadderString = new StringOfWordLadder();
+
             //Test
-            //Assert.True(testoutputtedstring,wordlistinstance.WordExistsInListFromWordFile(testwordladder));
+            Assert.Equal(testoutputtedstring, TestWordLadderString.GetStringOfWordLadder(foundLadders));
         }
 
     }
+
+   
 }
 
 
