@@ -27,22 +27,24 @@ namespace WordLadderTest
 
         //TODO give these tests better namas
         //Like WithinSingleEditDistanceIsTrueTest
+
+        // Done
         [Fact]
-        public void WithinSingleEditDistance1()
+        public void WithinSingleEditDistanceIsTrueTest()
         {
             WordLadderSolution WordLadderInstance = new WordLadderSolution();
             Assert.True(WordLadderInstance.WithinSingleEditDistance("eddi", "eddy"));
         }
 
         [Fact]
-        public void WithinSingleEditDistance2()
+        public void WithinSingleEditDistanceIsZeroFalseTest()
         {
             WordLadderSolution WordLadderInstance = new WordLadderSolution();
             Assert.False(WordLadderInstance.WithinSingleEditDistance("eddi", "eddi"));
         }
 
         [Fact]
-        public void WithinSingleEditDistance3()
+        public void WithinSingleEditDistanceIsPluralTest()
         {
             WordLadderSolution WordLadderInstance = new WordLadderSolution();
             Assert.False(WordLadderInstance.WithinSingleEditDistance("eddi", "edey"));
