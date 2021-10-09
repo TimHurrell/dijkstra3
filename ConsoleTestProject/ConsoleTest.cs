@@ -1,12 +1,11 @@
+using InputwordClass;
 using System;
-using Xunit;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using WordlistClass;
-using InputwordClass;
 using WordladderstringClass;
-using WordLadderLibrary;
+using WordlistClass;
+using Xunit;
 namespace ConsoleTestProject
 {
     public class TestRecordsFile
@@ -49,7 +48,7 @@ namespace ConsoleTestProject
             {
                 _listofwordsfromwordfile = new List<string> { "hot", "dot", "doog", "lot", "log", "cog" }
             };
-          
+
 
             bool testresult = true;
             foreach (var word in wordlistinstance._listofwordsfromwordfile)
@@ -66,24 +65,11 @@ namespace ConsoleTestProject
         [Fact]
         public void CheckListOnlyContains3LetterWordsTestFullSelectionTrue()
         {
-            Listofwordsfromwordfile wordlistinstance = new Listofwordsfromwordfile(_listofwordsfromwordfile);
-            InputWordsForWordLadders InputWordsForWordLaddersinstance = new InputWordsForWordLadders
-            {
-                Seedword = "Ben"
-            };
-            wordlistinstance.RemoveIncorrectLength(InputWordsForWordLaddersinstance.Seedword);
-            bool testresult = true;
-            foreach (var word in wordlistinstance._listofwordsfromwordfile)
-            {
-                if (word.Length != 3)
-                {
-                    testresult = false;
-                }
-            }
-
-            Assert.True(testresult);
+            var myWords = new List<string> { "hot", "dot", "doog", "lot", "log", "cog" };
+            Listofwordsfromwordfile wordlistinstance = new Listofwordsfromwordfile(myWords);
+            var processedWords = wordlistinstance.RemoveIncorrectLength("Ben");
+            Assert.Equal(5, processedWords.Count);
         }
-
 
         [Fact]
         public void CheckListOnlyContains3LetterWordsTestFullSelectionFalse()
@@ -151,7 +137,7 @@ namespace ConsoleTestProject
         {
             List<string> words = new List<string>() { "cog", "mat" };
             Listofwordsfromwordfile wordlistinstance = new Listofwordsfromwordfile(words);
-            
+
             Assert.True(wordlistinstance.WordExistsInListFromWordFile("cog"));
         }
         [Fact]
@@ -162,34 +148,23 @@ namespace ConsoleTestProject
             Assert.False(wordlistinstance.WordExistsInListFromWordFile("Cog"));
         }
 
-        [Fact]
 
+        [Fact]
         // want to simplify this and not have to invoke the wordladder library file
         public void CheckStringCreatedFromWordLadder()
         {
-            List<string> listofwordsfromwordfile = new List<string> { "hot", "dot", "dog", "lot", "log", "cog" };
-            string beginWord = "hit";
-            string endWord = "cog";
-            List<List<string>> expectedLadders = new List<List<string>>
+            var ladders = new List<IList<string>>
             {
                 new List<string> { "hit", "hot", "dot", "dog", "cog" },
                 new List<string> { "hit", "hot", "lot", "log", "cog" }
             };
 
-            var foundLadders = new WordLadderSolution().FindLadders(beginWord, endWord, listofwordsfromwordfile);
-
-
-            string testoutputtedstring = "\r\nLadder1,hit,hot,dot,dog,cog\r\nLadder2,hit,hot,lot,log,cog";
             StringOfWordLadder TestWordLadderString = new StringOfWordLadder();
 
-            //Test
-            Assert.Equal(testoutputtedstring, TestWordLadderString.GetStringOfWordLadder(foundLadders));
+            var outputString = TestWordLadderString.GetStringOfWordLadder(ladders);
+            var expectedString = "\r\nLadder1,hit,hot,dot,dog,cog\r\nLadder2,hit,hot,lot,log,cog";
+
+            Assert.Equal(expectedString, outputString);
         }
-
     }
-
-   
 }
-
-
-
