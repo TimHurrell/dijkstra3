@@ -7,6 +7,9 @@ using WordlistClass;
 using InputwordClass;
 using WordladderstringClass;
 using WordLadderLibrary;
+using ConsoleApplication;
+
+
 namespace ConsoleTestProject
 {
     public class TestRecordsFile
@@ -124,26 +127,26 @@ namespace ConsoleTestProject
         [Fact]
         public void CheckInputAndEndWordsSameLengthTrue()
         {
-            InputWordsForWordLadders InputWordsForWordLaddersinstance = new InputWordsForWordLadders();
-            Assert.True(InputWordsForWordLaddersinstance.AreWordsDifferentLength("Good", "Bad"));
+            WordsValidator wordsvalidatorinstance = new WordsValidator();
+            Assert.True(wordsvalidatorinstance.AreWordsDifferentLength("Good", "Bad"));
         }
         [Fact]
         public void CheckInputAndEndWordsSameLengthFalse()
         {
-            InputWordsForWordLadders InputWordsForWordLaddersinstance = new InputWordsForWordLadders();
-            Assert.False(InputWordsForWordLaddersinstance.AreWordsDifferentLength("Good", "Goad"));
+            WordsValidator wordsvalidatorinstance = new WordsValidator();
+            Assert.False(wordsvalidatorinstance.AreWordsDifferentLength("Good", "Goad"));
         }
         [Fact]
         public void CheckInputAndEndWordsSame()
         {
-            InputWordsForWordLadders InputWordsForWordLaddersinstance = new InputWordsForWordLadders();
-            Assert.False(InputWordsForWordLaddersinstance.AreWordsDifferent("Good", "Good"));
+            WordsValidator wordsvalidatorinstance = new WordsValidator();
+            Assert.False(wordsvalidatorinstance.AreWordsDifferent("Good", "Good"));
         }
         [Fact]
         public void CheckInputAndEndWordsDifferent()
         {
-            InputWordsForWordLadders InputWordsForWordLaddersinstance = new InputWordsForWordLadders();
-            Assert.True(InputWordsForWordLaddersinstance.AreWordsDifferent("Good", "Goad"));
+            WordsValidator wordsvalidatorinstance = new WordsValidator();
+            Assert.False(wordsvalidatorinstance.AreWordsDifferent("Good", "Goad"));
         }
 
         [Fact]

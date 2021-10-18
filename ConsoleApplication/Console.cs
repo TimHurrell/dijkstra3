@@ -11,15 +11,6 @@ namespace ConsoleApplication
 {
     class Console
     {
-       
-        public void FinishWordExistsInList(Listofwordsfromwordfile wordlist, string finishword)
-        {
-            if (!wordlist.WordExistsInListFromWordFile(finishword))
-            {
-                System.Console.WriteLine("Sorry, the finish word has to be in your dictionary file");
-            }
-        }
-
         public Listofwordsfromwordfile CreateWordListFromInputWordFile(string Filepath)
         {
             List<string> _listofwordsfromwordfile;
@@ -30,7 +21,6 @@ namespace ConsoleApplication
         static void Main()
         {
             Console console = new Console();
-            //InputWordsForWordLadders InputWordsForWordLaddersinstance = console.Intro();
 
             System.Console.Write("Enter start word : \n");
             InputWordsForWordLadders InputWordsForWordLaddersinstance = new InputWordsForWordLadders
@@ -41,23 +31,18 @@ namespace ConsoleApplication
             InputWordsForWordLaddersinstance.Finishword = System.Console.ReadLine();
             System.Console.WriteLine(InputWordsForWordLaddersinstance.Seedword);
             System.Console.WriteLine(InputWordsForWordLaddersinstance.Finishword);
-            if (InputWordsForWordLaddersinstance.AreWordsDifferentLength(InputWordsForWordLaddersinstance.Seedword, InputWordsForWordLaddersinstance.Finishword))
-            {
-                System.Console.WriteLine("Sorry, words need to be the same length");
-                return;
-            }
-            if (InputWordsForWordLaddersinstance.AreWordsDifferent(InputWordsForWordLaddersinstance.Seedword, InputWordsForWordLaddersinstance.Finishword) == false)
-            {
-                System.Console.WriteLine("Sorry, words need to be different");
-                return;
-            }
+
+            WordsValidator wordsvalidatorinstance = new WordsValidator();
+            wordsvalidatorinstance.AreWordsDifferentLength(InputWordsForWordLaddersinstance.Seedword, InputWordsForWordLaddersinstance.Finishword);
+            wordsvalidatorinstance.AreWordsDifferent(InputWordsForWordLaddersinstance.Seedword, InputWordsForWordLaddersinstance.Finishword);
 
 
             System.Console.Write("Enter file name :\n ");
             string filename = System.Console.ReadLine();
             string filePath = Path.Combine(AppContext.BaseDirectory, filename);
             Listofwordsfromwordfile wordlistinstance = console.CreateWordListFromInputWordFile(filePath);
-            console.FinishWordExistsInList(wordlistinstance, InputWordsForWordLaddersinstance.Finishword);
+
+            wordsvalidatorinstance.FinishWordExistsInList(wordlistinstance, InputWordsForWordLaddersinstance.Finishword);
 
 
             wordlistinstance.RemoveIncorrectLength(InputWordsForWordLaddersinstance.Seedword);
