@@ -145,7 +145,7 @@ namespace ConsoleTestProject
         public void CheckInputAndEndWordsDifferent()
         {
             WordsValidator wordsvalidatorinstance = new WordsValidator();
-            Assert.False(wordsvalidatorinstance.AreWordsDifferent("Good", "Goad"));
+            Assert.True(wordsvalidatorinstance.AreWordsDifferent("Good", "Goad"));
         }
 
         [Fact]
