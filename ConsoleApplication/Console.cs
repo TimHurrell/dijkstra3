@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using WordLadderLibrary;
-using InputwordClass;
 using WordlistClass;
 using WriteLaddersToFile;
 
@@ -22,16 +21,10 @@ namespace ConsoleApplication
         {
             Console console = new Console();
 
-            System.Console.Write("Enter start word : \n");
-            InputWordsForWordLadders InputWordsForWordLaddersinstance = new InputWordsForWordLadders
-            {
-                Seedword = System.Console.ReadLine()
-            };
-            System.Console.Write("Enter finish word :\n ");
-            InputWordsForWordLaddersinstance.Finishword = System.Console.ReadLine();
-            System.Console.WriteLine(InputWordsForWordLaddersinstance.Seedword);
-            System.Console.WriteLine(InputWordsForWordLaddersinstance.Finishword);
+            // Entering the words
+            InputWordsForWordLadders InputWordsForWordLaddersinstance = new InputWordsForWordLadders();
 
+            // Validating the words
             WordsValidator wordsvalidatorinstance = new WordsValidator();
             wordsvalidatorinstance.AreWordsDifferentLength(InputWordsForWordLaddersinstance.Seedword, InputWordsForWordLaddersinstance.Finishword);
             wordsvalidatorinstance.AreWordsDifferent(InputWordsForWordLaddersinstance.Seedword, InputWordsForWordLaddersinstance.Finishword);

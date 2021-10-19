@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using WordlistClass;
-using InputwordClass;
 using WordladderstringClass;
 using WordLadderLibrary;
 using ConsoleApplication;
