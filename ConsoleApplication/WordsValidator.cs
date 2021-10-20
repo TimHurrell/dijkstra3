@@ -11,9 +11,9 @@ namespace ConsoleApplication
                 {
                 //       StandardMessages.DisplayValidationError("first name");
                 System.Console.WriteLine("Sorry, words need to be the same length");
-                        return false;
+                        return true;
                 }
-            return true;
+            return false;
         }
         public bool AreWordsDifferent(string inputWord, string endWord)
         {
