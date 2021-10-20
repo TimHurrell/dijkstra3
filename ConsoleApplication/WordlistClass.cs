@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 
-namespace WordlistClass
+namespace ConsoleApplication
 {
 
     public class Listofwordsfromwordfile
@@ -25,9 +25,7 @@ namespace WordlistClass
             return _listofwordsfromwordfile;
         }
 
-        //TODO can you think of less specific name of this method.
-        //Would it work for other words besides the endword?
-        //Done
+
         public bool WordExistsInListFromWordFile(string word)
         {
             //Again using LINQ to find containing word

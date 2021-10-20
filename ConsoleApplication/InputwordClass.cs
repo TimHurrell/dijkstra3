@@ -2,7 +2,7 @@
 
 
 
-namespace InputwordClass
+namespace ConsoleApplication
 {
 
 
@@ -13,17 +13,18 @@ namespace InputwordClass
         public string Finishword { get; set; }
 
 
-        // these methods are so similar its probably not worth testing them.
-        public bool AreWordsDifferentLength(string inputWord, string endWord)
-        {
-            return inputWord.Length != endWord.Length;
 
-        }
-
-        public bool AreWordsDifferent(string inputWord, string endWord)
+        public InputWordsForWordLadders()
         {
-            return inputWord != endWord;
+
+            System.Console.Write("Enter start word : \n");
+            Seedword = System.Console.ReadLine();
+            System.Console.Write("Enter finish word :\n ");
+            Finishword = System.Console.ReadLine();
+            System.Console.WriteLine(Seedword);
+            System.Console.WriteLine(Finishword);
         }
+       
 
     }
 
