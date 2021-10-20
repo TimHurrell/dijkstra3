@@ -1,10 +1,12 @@
 ﻿
 using System;
+using System.IO;
 
 
 
 
-namespace FilepathClass
+
+namespace ConsoleApplication
 {
 
     public class WordFilePath
@@ -14,7 +16,8 @@ namespace FilepathClass
         {
             System.Console.Write("Enter file name :\n ");
             string filename = System.Console.ReadLine();
-            return AppContext.BaseDirectory + @"\" + filename;
+            string filepath = Path.Combine(AppContext.BaseDirectory, filename);
+            return filepath;
         }
     }
 

@@ -3,8 +3,6 @@ using Xunit;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using WordlistClass;
-using WordladderstringClass;
 using WordLadderLibrary;
 using ConsoleApplication;
 

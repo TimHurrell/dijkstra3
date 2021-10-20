@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using WordladderstringClass;
 
-namespace WriteLaddersToFile
+namespace ConsoleApplication
 {
     public class WriteLadders
     {
