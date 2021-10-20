@@ -2,22 +2,16 @@
 using System;
 using System.IO;
 
-
-
-
-
 namespace ConsoleApplication
 {
 
-    public class WordFilePath
+    public static class WordFilePath
     {
-
-        public string GetWordFilePath()
+        public static string GetWordFilePath()
         {
             System.Console.Write("Enter file name :\n ");
             string filename = System.Console.ReadLine();
-            string filepath = Path.Combine(AppContext.BaseDirectory, filename);
-            return filepath;
+            return Path.Combine(AppContext.BaseDirectory, filename);
         }
     }
 

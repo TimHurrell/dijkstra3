@@ -7,7 +7,7 @@ namespace ConsoleApplication
 { 
 public class StringOfWordLadder
 {
-    public string GetStringOfWordLadder(IList<IList<string>> ladders)
+    public string GetStringOfWordLadder(IEnumerable<IEnumerable<string>> ladders)
     {
         string strSeperator = ",";
         StringBuilder StringOfWordLadders = new StringBuilder();

@@ -28,6 +28,8 @@ namespace ConsoleTestProject
         public void CheckListOnlyContains3LetterWordsTestLimitedSelectionTrue()
         {
             Listofwordsfromwordfile wordlistinstance = new Listofwordsfromwordfile();
+            //This test doesn't work because its looking for input from Console when the next line is instantiated.
+            //So should design your class such that it doesn't require external input so you can test it.
             InputWordsForWordLadders InputWordsForWordLaddersinstance = new InputWordsForWordLadders();
             wordlistinstance._listofwordsfromwordfile = new List<string> { "hot", "dot", "doog", "lot", "log", "cog" };
             InputWordsForWordLaddersinstance.Seedword = "Ben";

@@ -8,8 +8,6 @@ namespace ConsoleApplication
     { 
         static void Main()
         {
-            Console console = new Console();
-
             // Entering the words
             InputWordsForWordLadders InputWordsForWordLaddersinstance = new InputWordsForWordLadders();
 
@@ -19,9 +17,11 @@ namespace ConsoleApplication
             wordsvalidatorinstance.AreWordsDifferent(InputWordsForWordLaddersinstance.Seedword, InputWordsForWordLaddersinstance.Finishword);
 
             // creating list of words from the word text file
-            WordFilePath wordsfilepathinstance = new WordFilePath();
+            //an example of how to use a static method on a static class
+            string wordFilePath = WordFilePath.GetWordFilePath();
+
             CreateWordListFromFile createwordlistfromfileinstance = new CreateWordListFromFile();
-            Listofwordsfromwordfile wordlistinstance = createwordlistfromfileinstance.GetWordList(wordsfilepathinstance.GetWordFilePath());
+            Listofwordsfromwordfile wordlistinstance = createwordlistfromfileinstance.GetWordList(wordFilePath);
 
             // checking end word is in the word text file file
             wordsvalidatorinstance.FinishWordExistsInList(wordlistinstance, InputWordsForWordLaddersinstance.Finishword);
